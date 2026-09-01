@@ -21,6 +21,8 @@
   --gold-soft:  #D9C79B;
   --cold:       #1F6E96;   /* 50℃ */
   --cold-soft:  #CFE3EE;
+  --warm:       #C1891A;   /* 70℃ */
+  --warm-soft:  #F5E2CE;
   --hot:        #B4442A;   /* 90℃ */
   --hot-soft:   #F2D6CC;
   --sans: "Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","YuGothic","Meiryo","Noto Sans JP","MS PGothic",sans-serif;
@@ -176,26 +178,47 @@ h3{ font-size:66px; font-weight:800; line-height:1.25; }
 .cmp2 .pair{ flex:1; }
 .cmp2 .row{ display:flex; align-items:center; gap:20px; }
 .cmp2 .row + .row{ margin-top:12px; }
-.cmp2 .row.r2{ opacity:.16; transition:opacity .45s; }
-.s[data-step="1"] .cmp2 .row.r2{ opacity:1; }
-.cmp2 .tt{ width:132px; font-size:36px; font-weight:800; }
-.cmp2 .tt.c{ color:var(--cold); } .cmp2 .tt.h{ color:var(--hot); }
-.cmp2 .tr{ position:relative; flex:1; height:46px; background:rgba(138,154,144,.16); }
-.cmp2 .fa,.cmp2 .fb{ position:absolute; left:0; top:0; bottom:0; width:0; }
+.cmp2 .row.r2,.cmp2 .row.r3{ opacity:.14; transition:opacity .45s; }
+.s[data-step="1"] .cmp2 .row.r2,
+.s[data-step="2"] .cmp2 .row.r2,
+.s[data-step="2"] .cmp2 .row.r3{ opacity:1; }
+.cmp2 .tt{ width:126px; font-size:34px; font-weight:800; }
+.cmp2 .tt.c{ color:var(--cold); } .cmp2 .tt.w{ color:var(--warm); } .cmp2 .tt.h{ color:var(--hot); }
+.cmp2 .tr{ position:relative; flex:1; height:38px; background:rgba(138,154,144,.16); }
+.cmp2 .fa,.cmp2 .fb,.cmp2 .fc{ position:absolute; left:0; top:0; bottom:0; width:0; }
 .cmp2 .fa{ background:var(--cold); transition:width 1.1s cubic-bezier(.2,.75,.2,1); }
-.cmp2 .fb{ background:var(--hot);  transition:width .9s cubic-bezier(.2,.75,.2,1); }
+.cmp2 .fb{ background:var(--warm); transition:width .9s cubic-bezier(.2,.75,.2,1); }
+.cmp2 .fc{ background:var(--hot);  transition:width .9s cubic-bezier(.2,.75,.2,1); }
 .s.play .cmp2 .fa{ width:var(--w1); }
-.s.play[data-step="1"] .cmp2 .fb{ width:var(--w2); }
-.cmp2 .pv{ width:170px; font-size:44px; font-weight:800; font-feature-settings:"tnum"; }
-.cmp2 .pv.a{ color:var(--cold); } .cmp2 .pv.b{ color:var(--hot); }
-.sidenote{ font-size:36px; font-weight:700; color:var(--ink-2); text-align:center; margin-bottom:30px; }
+.s.play[data-step="1"] .cmp2 .fb,
+.s.play[data-step="2"] .cmp2 .fb{ width:var(--w2); }
+.s.play[data-step="2"] .cmp2 .fc{ width:var(--w3); }
+.cmp2 .tr.nd{ background:repeating-linear-gradient(45deg,rgba(138,154,144,.20) 0 10px,transparent 10px 20px); }
+.cmp2 .nd span{ position:absolute; left:14px; top:50%; transform:translateY(-50%); font-size:26px; font-weight:800; color:var(--ink-2); }
+.cmp2 .pv{ width:170px; font-size:40px; font-weight:800; font-feature-settings:"tnum"; }
+.cmp2 .pv.a{ color:var(--cold); } .cmp2 .pv.b{ color:var(--warm); } .cmp2 .pv.c{ color:var(--hot); }
+.cmp2 .pv.nd{ color:var(--ink-3); font-size:30px; }
+.sidenote{ font-size:33px; font-weight:700; color:var(--ink-2); text-align:center; margin-bottom:20px; }
+
+/* 連続抽出（同じ茶葉・積み上げ） */
+.seq{ display:flex; align-items:center; gap:26px; margin-bottom:24px; }
+.seq .lab{ width:430px; text-align:right; font-size:44px; font-weight:800; }
+.seq .lab small{ display:block; font-size:26px; font-weight:700; color:var(--ink-2); margin-top:4px; }
+.seq .tr{ position:relative; flex:1; height:60px; background:rgba(138,154,144,.16); }
+.seq .g1{ position:absolute; left:0; top:0; bottom:0; width:var(--g1); background:var(--ink); }
+.seq .g2{ position:absolute; left:var(--g1); top:0; bottom:0; width:var(--g2); background:var(--hot); }
+.seq .pv{ width:330px; font-size:40px; font-weight:800; font-feature-settings:"tnum"; white-space:nowrap; }
+.seq .pv i{ font-style:normal; color:var(--hot); }
+.legend{ display:flex; justify-content:center; gap:44px; font-size:34px; font-weight:800; margin-bottom:24px; }
+.legend b{ display:inline-block; width:34px; height:22px; margin-right:12px; vertical-align:-2px; }
 
 /* ステップ切替キャプション */
 .cap{ font-size:52px; font-weight:800; text-align:center; margin-top:8px; line-height:1.4; }
-.cap .c1,.cap .c2{ display:none; }
+.cap .c1,.cap .c2,.cap .c3{ display:none; }
 .s[data-step="0"] .cap .c1{ display:block; }
 .s[data-step="1"] .cap .c2{ display:block; }
-.hint{ font-size:34px; font-weight:700; color:var(--gold); margin-top:10px; }
+.s[data-step="2"] .cap .c3{ display:block; }
+.hint{ font-size:32px; font-weight:700; color:var(--gold); }
 
 /* 二段構えタイムライン */
 .tl{ width:100%; }
@@ -385,50 +408,56 @@ body.hover #nav{ opacity:1; }
 </section>
 
 <!-- ============ 07 溶出アニメーション（60秒浸出中） ============ -->
-<section class="s" data-t="成分の溶け出し方（アニメ・→で2段目）" data-steps="1" data-step="0">
-  <div class="head" style="margin-bottom:22px"><div class="eyebrow">THE SCIENCE</div><h2>成分は、同じようには溶け出さない</h2></div>
-  <div class="sidenote">同じ茶葉を <span style="color:var(--cold)">50℃</span> と <span style="color:var(--hot)">70℃</span> で、それぞれ 60秒 淹れたとき</div>
+<section class="s" data-t="成分の溶け出し方（アニメ・→で3段階）" data-steps="2" data-step="0">
+  <div class="head" style="margin-bottom:14px"><div class="eyebrow">THE SCIENCE</div><h2 style="font-size:80px">成分は、同じようには溶け出さない</h2></div>
+  <div class="sidenote">同じ茶葉を <span style="color:var(--cold)">50℃</span> ／ <span style="color:var(--warm)">70℃</span> ／ <span style="color:var(--hot)">90℃</span> で、それぞれ 60秒 淹れたとき</div>
 
   <div style="width:100%">
-    <div class="cmp2" style="--w1:40.5%;--w2:49.3%">
+    <div class="cmp2" style="--w1:40.5%;--w2:49.3%;--w3:0%">
       <div class="lab"><b>テアニン</b><small>アミノ酸類／旨味・甘味</small></div>
       <div class="pair">
         <div class="row"><span class="tt c">50℃</span><div class="tr"><div class="fa"></div></div><span class="pv a">40.5%</span></div>
-        <div class="row r2"><span class="tt h">70℃</span><div class="tr"><div class="fb"></div></div><span class="pv b">49.3%</span></div>
+        <div class="row r2"><span class="tt w">70℃</span><div class="tr"><div class="fb"></div></div><span class="pv b">49.3%</span></div>
+        <div class="row r3"><span class="tt h">90℃</span><div class="tr nd"><span>90℃条件の測定なし</span></div><span class="pv nd">—</span></div>
       </div>
     </div>
-    <div class="cmp2" style="--w1:17.5%;--w2:33.2%">
+    <div class="cmp2" style="--w1:17.5%;--w2:33.2%;--w3:44.2%">
       <div class="lab"><b>EGC</b><small>遊離型カテキン／爽やかな渋み</small></div>
       <div class="pair">
         <div class="row"><span class="tt c">50℃</span><div class="tr"><div class="fa"></div></div><span class="pv a">17.5%</span></div>
-        <div class="row r2"><span class="tt h">70℃</span><div class="tr"><div class="fb"></div></div><span class="pv b">33.2%</span></div>
+        <div class="row r2"><span class="tt w">70℃</span><div class="tr"><div class="fb"></div></div><span class="pv b">33.2%</span></div>
+        <div class="row r3"><span class="tt h">90℃</span><div class="tr"><div class="fc"></div></div><span class="pv c">44.2%</span></div>
       </div>
     </div>
-    <div class="cmp2" style="--w1:6.9%;--w2:17.1%">
-      <div class="lab"><b>EGCG</b><small>ガレート型／重い苦渋味</small></div>
+    <div class="cmp2" style="--w1:6.9%;--w2:17.1%;--w3:31.5%">
+      <div class="lab"><b>EGCg</b><small>ガレート型／重い苦渋味</small></div>
       <div class="pair">
         <div class="row"><span class="tt c">50℃</span><div class="tr"><div class="fa"></div></div><span class="pv a">6.9%</span></div>
-        <div class="row r2"><span class="tt h">70℃</span><div class="tr"><div class="fb"></div></div><span class="pv b">17.1%</span></div>
+        <div class="row r2"><span class="tt w">70℃</span><div class="tr"><div class="fb"></div></div><span class="pv b">17.1%</span></div>
+        <div class="row r3"><span class="tt h">90℃</span><div class="tr"><div class="fc"></div></div><span class="pv c">31.5%</span></div>
       </div>
     </div>
   </div>
 
-  <div class="cap">
-    <div class="c1">低温で時間をかけると、<span class="mark">アミノ酸類が先に出る。</span><div class="hint">→ では、温度を上げると</div></div>
-    <div class="c2">高温で淹れると、<span class="mark">カテキン類はここまで出る。</span></div>
+  <div class="cap" style="font-size:46px">
+    <div class="c1">低温で時間をかけると、<span class="mark">アミノ酸類が先に出る。</span><span class="hint">　→ 温度を上げると</span></div>
+    <div class="c2">温度を上げると、<span class="mark">カテキン類が大きく出る。</span><span class="hint">　→ さらに90℃なら</span></div>
+    <div class="c3">90℃で60秒なら、<span class="mark">重い苦渋味まで一気に出る。</span></div>
   </div>
-  <div class="src">坂本ら（2002）茶業研究報告 94:45-55／煎茶4g・120mL・1煎目60秒。<b>50℃と70℃は、それぞれ別々に淹れた1煎目を並べたもの</b>で、低温のあとに高温を重ねた結果ではない。今回の二段階抽出そのものを測定した値でも、拓朗（午）の実測値でもない。</div>
+  <div class="src">坂本ら（2002）茶業研究報告 94:45-55、表2・表3（p.49）／深蒸し上級煎茶4g・湯120mL・1煎目60秒。<b>3つの温度は、それぞれ別々に淹れた1煎目を並べたもの</b>で、低温のあとに高温を重ねた結果ではない。アミノ酸類（表3）に90℃条件はない。拓朗（午）の実測値でもない。</div>
 
-  <div class="notes"><h4>3:20–4:20 ／ 60秒浸出中の発話（このページで前半を使う）</h4>→ キーで70℃のバーが伸びます。<br>
-  <b>安全な言い方：</b>「お茶の成分は、すべて同じように溶け出すわけではありません。温度や時間によって、それぞれ溶出の仕方が違います。」<br>
+  <div class="notes"><h4>3:20–4:20 ／ 60秒浸出中の発話（このページで前半を使う）</h4>→ キーで 70℃ → 90℃ と段階的に伸びます（計2回）。<br>
+  <b>この3段で言いたいこと：</b>①低温ではアミノ酸が先に出る ②温度を上げるとカテキンが出る ③90℃で60秒も置くと重い苦渋味まで出る → <b>だから追い湯は温度を上げたうえで10秒で切る</b>（次ページ）。<br>
   <b>言ってはいけない：</b>「50℃なら旨味だけが出る」「低温ならカフェインは出ない」。このグラフを「一煎目の一段目→二段目」として説明しない（別々に淹れた1煎目の比較）。<br>
   <hr style="border:0;border-top:1px solid #4A6154;margin:14px 0">
-  <b>想定質問①「Phase 2は約84℃なのに、なぜグラフは70℃？」</b><br>
-  → 70℃が、この研究で単一条件として測定されている中でいちばん高い温度だから。84℃そのものを測った値は手元にない。<br>
-  <b>想定質問②「EGCGも6.9%→17.1%と2.5倍に増えていますよね？」</b><br>
-  → その通り。だから二段目は温度ではなく<b>時間</b>で抑えている。このグラフはどちらも60秒だが、実際の追い湯は10秒。重い苦渋味の出過ぎを防いでいるのは、温度ではなく短く切ること。<br>
-  <b>想定質問③「カフェインは？」</b><br>
-  → 60℃で38.4%、70℃で34.6%と単調に増えないため、誤解を避けてこのグラフからは外している。低温でも時間をかければ相当量が溶出する。</div>
+  <b>想定質問①「テアニンの90℃は？」</b><br>
+  → 坂本らの表3（遊離アミノ酸）には50・60・70℃しかなく、90℃条件が測定されていない。だから示していない。<br>
+  <b>想定質問②「Phase 2は約84℃なのに、なぜ90℃のグラフ？」</b><br>
+  → 注ぐ湯そのものは90℃。急須の中で30mL・50℃と混ざって約84℃になる。グラフは「90℃の湯がどれだけ引き出す力を持つか」を見るためのもの。<br>
+  <b>想定質問③「EGCgも4.6倍に増えていますよね？」</b><br>
+  → その通り。だから二段目は温度ではなく<b>時間</b>で抑えている。このグラフは全て60秒だが、実際の追い湯は10秒。<br>
+  <b>想定質問④「カフェインは？」</b><br>
+  → 表2では50℃21.6%、60℃38.4%、70℃34.6%、90℃62.7%。60℃と70℃が逆転しており、論文自身も「一部分析値にばらつきが認められた」と記している。誤解を避けてこのグラフからは外している。低温でも時間をかければ相当量が溶出する。</div>
 </section>
 
 <!-- ============ 08 二段構えの設計（アニメ・追い湯所作中） ============ -->
@@ -475,12 +504,14 @@ body.hover #nav{ opacity:1; }
     <div class="pcard h">
       <div class="t">PHASE 2 ／ 追い湯・高温・短時間</div>
       <ul>
+        <li>90℃の湯を加え、急須の中で約84℃に</li>
         <li>爽やかな渋みを後から立ち上げる</li>
         <li>10秒で切り、重い苦渋味の出過ぎを避ける</li>
       </ul>
     </div>
   </div>
-  <div class="notes"><h4>4:20–5:20 ／ 60秒説明の締め〜追い湯・抽出・注ぎ分け・呈茶</h4>「では、追い湯をします」でこのページへ。以降は原則として重要な発話はしない。<br>混合温度は熱損失を無視した単純計算で約84℃。実際には急須・茶葉への熱移動でさらに数℃下がる。<br><b>言い方：</b>ガレート型を「抑え込む」ではなく「出過ぎを避けることを狙う」。</div>
+  <div class="notes"><h4>4:20–5:20 ／ 60秒説明の締め〜追い湯・抽出・注ぎ分け・呈茶</h4>「では、追い湯をします」でこのページへ。以降は原則として重要な発話はしない。<br>混合温度は熱損失を無視した単純計算で約84℃。実際には急須・茶葉への熱移動でさらに数℃下がる。<br><b>言い方：</b>ガレート型を「抑え込む」ではなく「出過ぎを避けることを狙う」。<br>
+  前ページで見たとおり、90℃・60秒ならEGCgは31.5%まで出る。抑えているのは温度ではなく<b>時間</b>。</div>
 </section>
 
 <!-- ============ 09 一煎目の狙い ============ -->
@@ -618,8 +649,8 @@ body.hover #nav{ opacity:1; }
     </div>
     <div class="card hi">
       <div class="k gold">50℃・60秒（採用）</div>
-      <div class="v" style="font-size:88px;color:var(--gold)">約6倍</div>
-      <div class="sub" style="font-size:32px">テアニン 40.5%<br>に対し EGCG 6.9%<br><span style="font-size:28px">アミノ酸類全体では約5〜8倍</span></div>
+      <div class="v" style="font-size:80px;color:var(--gold)">約5〜8倍</div>
+      <div class="sub" style="font-size:31px">アミノ酸類 40.5〜53.5%<br>に対し<br>ガレート型 6.9〜7.3%</div>
     </div>
     <div class="card dim" style="opacity:.85">
       <div class="k">60℃</div>
@@ -627,6 +658,7 @@ body.hover #nav{ opacity:1; }
       <div class="sub" style="font-size:32px">アミノ酸側も増えるが、<br>カフェインが大きく上昇</div>
     </div>
   </div>
+  <div class="src" style="font-size:29px;text-align:center">坂本ら（2002）表3（p.49）50℃・1煎目60秒：アスパラギン酸53.5%／グルタミン酸52.4%／セリン50.0%／グルタミン47.0%／テアニン40.5%。表2：EGCg 6.9%／ECg 7.3%。</div>
   <div class="warn"><b>言い方の境界：</b>「50℃なら旨味だけが出る」とは言わない。低温でも溶出しやすい成分と、低温では溶出が遅い成分の<b>差</b>を利用している、と説明する。</div>
 </section>
 
@@ -656,15 +688,30 @@ body.hover #nav{ opacity:1; }
 
 <!-- ============ 20 なぜ90℃・10秒 ============ -->
 <section class="s qa" data-t="Q. なぜ二煎目は90℃・10秒？">
-  <div class="head"><div class="eyebrow">Q&amp;A 03</div><div class="q">なぜ二煎目は 90℃・10秒 なのか。</div></div>
-  <div class="leafline" style="font-size:40px;margin-bottom:22px"><span style="font-weight:700;color:var(--ink-2)">90℃・1煎目60秒 ＋ 2煎目10秒 の<b>累積</b>溶出割合</span></div>
-  <div class="bars">
-    <div class="bar mid"><div class="lab">カフェイン</div><div class="track"><div class="fill" style="width:82.8%"></div></div><div class="pct">82.8%</div></div>
-    <div class="bar mid"><div class="lab">EGC・EC（遊離型）</div><div class="track"><div class="fill" style="width:79.2%"></div></div><div class="pct">79.2%</div></div>
-    <div class="bar slow"><div class="lab">EGCG（ガレート型）</div><div class="track"><div class="fill" style="width:46.9%"></div></div><div class="pct">46.9%</div></div>
-    <div class="bar slow"><div class="lab">ECG（ガレート型）</div><div class="track"><div class="fill" style="width:41.5%"></div></div><div class="pct">41.5%</div></div>
+  <div class="head" style="margin-bottom:20px"><div class="eyebrow">Q&amp;A 03</div><div class="q" style="font-size:66px">なぜ二煎目は 90℃・10秒 なのか。</div></div>
+  <div class="sidenote" style="font-size:36px;margin-bottom:16px">吸水済みの茶葉なら、<b>90℃・10秒</b>でもこれだけ追加で出る（同じ茶葉での連続抽出）</div>
+  <div class="legend">
+    <span><b style="background:var(--ink)"></b>1煎目 90℃・60秒</span>
+    <span><b style="background:var(--hot)"></b>2煎目 90℃・10秒の追加分</span>
   </div>
-  <div class="src">坂本ら（2002）煎茶4g・120mL。2煎目だけの値ではなく、1煎目60秒を含めた累積値。吸水済みの茶葉では、高温・短時間でも追加溶出が進む。長く置かないことで、爽やかさを狙いつつ苦渋味側の増加を抑えることを狙う。</div>
+  <div style="width:100%">
+    <div class="seq" style="--g1:44.2%;--g2:35.0%">
+      <div class="lab">EGC<small>遊離型／爽やかな渋み</small></div>
+      <div class="tr"><div class="g1"></div><div class="g2"></div></div>
+      <div class="pv">44.2% <i>+35.0</i> → 79.2%</div>
+    </div>
+    <div class="seq" style="--g1:31.5%;--g2:15.4%">
+      <div class="lab">EGCg<small>ガレート型／重い苦渋味</small></div>
+      <div class="tr"><div class="g1"></div><div class="g2"></div></div>
+      <div class="pv">31.5% <i>+15.4</i> → 46.9%</div>
+    </div>
+    <div class="seq" style="--g1:62.7%;--g2:20.1%">
+      <div class="lab">カフェイン<small>苦味</small></div>
+      <div class="tr"><div class="g1"></div><div class="g2"></div></div>
+      <div class="pv">62.7% <i>+20.1</i> → 82.8%</div>
+    </div>
+  </div>
+  <div class="src">坂本ら（2002）表2（p.49）。EC は 44.6%→79.2%、ECg は 27.6%→41.5%。<b>10秒でも十分に出る。だから長く置かない</b>という設計。ただし研究の1煎目は90℃・60秒であり、今回の一煎目（50℃30mL60秒＋約84℃10秒）とは茶葉の状態が異なるため、この追加分がそのまま拓朗（午）に当てはまるわけではない。</div>
   <div class="warn"><b>言い方の境界：</b>「90℃・10秒が拓朗（午）の科学的最適値」とは言わない。「出し切る」も言わない。既存研究の挙動と実飲目的に整合する<b>実践的な基準値</b>として採用した、と説明する。</div>
 </section>
 
@@ -696,7 +743,8 @@ body.hover #nav{ opacity:1; }
     <li>久保 智子・藤原 孝之・冨澤 代志子（2014）「異なる条件で浸出した緑茶の渋味およびうま味の味覚センサーによる評価」日本食品科学工学会誌 61(5):192-198. DOI: 10.3136/nskkk.61.192</li>
     <li>野村 幸子ほか（2023）「‘やぶきた’二番茶の煎茶および釜炒り茶の冷水浸出液における化学成分の違い」茶業研究報告 135:19-28</li>
   </ul>
-  <div class="src" style="font-size:34px">いずれも拓朗（午）を試料とした研究ではありません。原理の理解に用い、具体的な条件は実飲によって決定しています。</div>
+  <div class="src" style="font-size:31px">いずれも拓朗（午）を試料とした研究ではありません。原理の理解に用い、具体的な条件は実飲によって決定しています。<br>
+  坂本ら（2002）は J-STAGE で全文（PDF）を確認し、本資料の数値は表2（カテキン類・カフェイン）および表3（遊離アミノ酸）p.49 から直接引用しています。</div>
 </section>
 
 <div id="bar"></div>

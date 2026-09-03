@@ -285,6 +285,41 @@ h3{ font-size:66px; font-weight:800; line-height:1.25; }
 #help.on{ display:flex; }
 #help div{ font-size:clamp(16px,1.7vw,26px); line-height:2; }
 #help b{ display:inline-block; min-width:170px; color:#D9C79B; }
+
+/* ============================================================
+   モバイル・小画面向けの調整
+   すべてメディアクエリで囲ってあるため、本番の全画面PC投影
+   （1024px以上・マウス/キーボード）には一切影響しません。
+   ============================================================ */
+
+/* iOS Safari が縦持ちで本文を勝手に拡大してレイアウトを崩すのを止める */
+html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+
+/* 起動ガイドの文言差し替え用（既定はPC文面） */
+.tapOnly{ display:none; }
+@media (pointer:coarse) and (max-width:900px){
+  .pcOnly{ display:none; }
+  .tapOnly{ display:inline; }
+}
+
+@media (max-width:900px){
+  /* 起動ガイド：clamp の下限のままだと画面幅を超える */
+  #start div{ font-size:16px; line-height:1.8; padding:0 20px; }
+  #start .sub{ font-size:13px; margin-top:16px; }
+  #start .k{ min-width:0; padding:1px 8px; margin:0 3px; }
+
+  /* ノート：34px/44px の余白が小画面では効きすぎる */
+  #notes{ padding:16px 18px; max-height:60vh; }
+
+  /* スライド一覧：5列固定だと1列15px程度になり字が縦積みになる */
+  #ov{ grid-template-columns:repeat(2,1fr); gap:10px; padding:14px; }
+  #ov div{ padding:12px; font-size:13px; min-height:0; }
+  #ov div span{ font-size:11px; margin-bottom:4px; }
+
+  /* ヘルプ：min-width:170px の見出しが折り返せず横にはみ出す */
+  #help div{ font-size:14px; line-height:1.8; padding:0 18px; }
+  #help b{ display:block; min-width:0; margin-top:10px; }
+}
 </style>
 </head>
 <body>
@@ -760,10 +795,11 @@ h3{ font-size:66px; font-weight:800; line-height:1.25; }
 
 <div id="start"><div>
   <b>一杯の設計図</b>　NBC 2026<br>
-  <span class="k">F</span> で全画面 →　<span class="k">→</span> または <span class="k">Space</span> で次へ<br>
+  <span class="pcOnly"><span class="k">F</span> で全画面 →　<span class="k">→</span> または <span class="k">Space</span> で次へ</span><span class="tapOnly">画面をタップ、または左へスワイプで次へ　右へスワイプで戻る</span><br>
   <div class="sub">
-    このガイドは最初の1回だけ表示されます（何かキーを押すか、クリックで消えます）。<br>
-    7ページは <span class="k">→</span> を3回押して3段階で進みます。詳しくは「操作担当者用」の紙をご覧ください。
+    <span class="pcOnly">このガイドは最初の1回だけ表示されます（何かキーを押すか、クリックで消えます）。<br>
+    7ページは <span class="k">→</span> を3回押して3段階で進みます。詳しくは「操作担当者用」の紙をご覧ください。</span><span class="tapOnly">このガイドは最初の1回だけ表示されます（画面をタップすると消えます）。<br>
+    7ページは3回タップして3段階で進みます。ピンチで拡大すると読みやすくなります。</span>
   </div>
 </div></div>
 
@@ -798,7 +834,11 @@ h3{ font-size:66px; font-weight:800; line-height:1.25; }
     var s = Math.min(window.innerWidth/1920, window.innerHeight/1080);
     stage.style.transform = 'translate(-50%,-50%) scale('+s+')';
   }
-  window.addEventListener('resize', fit); fit();
+  window.addEventListener('resize', fit);
+  window.addEventListener('orientationchange', fit);
+  /* iOS Safari はツールバーの出し入れで resize が来ないことがある */
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', fit);
+  fit();
 
   /* --- スライド一覧を組み立て --- */
   slides.forEach(function(el, n){
@@ -825,9 +865,17 @@ h3{ font-size:66px; font-weight:800; line-height:1.25; }
     inner.style.transform = 'none';
     inner.style.justifyContent = 'flex-start';   /* 必ず上詰めで測る */
     var cs = getComputedStyle(sl);
-    var avail = sl.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
-    var h = inner.scrollHeight;
-    if (h > avail + 1){ inner.style.transform = 'scale(' + (avail / h) + ')'; }
+    var avail  = sl.clientHeight - parseFloat(cs.paddingTop)  - parseFloat(cs.paddingBottom);
+    var availW = sl.clientWidth  - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    var h = inner.scrollHeight, w = inner.scrollWidth;
+    /* 縦だけでなく横のはみ出しも見る。
+       #stage は overflow:hidden なので、横に溢れると何の兆候もなく
+       切り落とされる。他機（Windows の游ゴシック、Android の代替
+       フォント）で字幅が広がったときの保険。 */
+    var sy = (h > avail  + 1) ? avail  / h : 1;
+    var sx = (w > availW + 4) ? availW / w : 1;   /* 4px はサブピクセル誤差の余裕 */
+    var sc = Math.max(0.6, Math.min(sx, sy));     /* 測定異常で潰れないよう下限を置く */
+    if (sc < 1){ inner.style.transform = 'scale(' + sc + ')'; }
     else { inner.style.justifyContent = ''; }    /* 収まるときだけ中央寄せに戻す */
   }
 
@@ -895,10 +943,41 @@ h3{ font-size:66px; font-weight:800; line-height:1.25; }
     else if (k === '?' || k === 'h' || k === 'H' || k === '/'){ help.classList.toggle('on'); }
   });
 
+  /* --- タッチ（タブレット・スマートフォン用） ---
+     ・2本指以上のジェスチャ（ピンチ）ではページを送らない
+     ・ピンチで拡大している間は送らない（拡大して読むための操作）
+     ・縦方向のドラッグでは送らない
+     マウス・キーボード操作には一切関与しない。 */
+  var tx = null, ty = 0, tMulti = false, tMoved = 0, tEnd = 0;
+  function zoomed(){ var v = window.visualViewport; return !!(v && v.scale > 1.05); }
+  document.addEventListener('touchstart', function(e){
+    if (e.touches.length > 1){ tMulti = true; tx = null; return; }
+    tMulti = false; tMoved = 0;
+    tx = e.changedTouches[0].clientX; ty = e.changedTouches[0].clientY;
+  }, {passive:true});
+  document.addEventListener('touchmove', function(e){
+    if (e.touches.length > 1){ tMulti = true; return; }
+    if (tx === null) return;
+    tMoved = Math.max(tMoved,
+      Math.abs(e.touches[0].clientX - tx), Math.abs(e.touches[0].clientY - ty));
+  }, {passive:true});
+  document.addEventListener('touchend', function(e){
+    tEnd = Date.now();
+    if (tMulti || tx === null){ tx = null; return; }
+    var dx = e.changedTouches[0].clientX - tx;
+    var dy = e.changedTouches[0].clientY - ty;
+    tx = null;
+    if (zoomed()) return;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)){ dx < 0 ? next() : prev(); }
+  }, {passive:true});
+
   document.body.addEventListener('click', function(e){
     if (e.target.closest('#ov') || e.target.closest('#notes')) return;
     if (dismissStart()) return;
     if (help.classList.contains('on')){ help.classList.remove('on'); return; }
+    /* 直前のタッチ由来のクリックだけを抑制する。
+       マウスのクリックは従来どおり常に次へ進む。 */
+    if (Date.now() - tEnd < 700 && (tMulti || tMoved > 10 || zoomed())) return;
     next();
   });
 
@@ -908,14 +987,6 @@ h3{ font-size:66px; font-weight:800; line-height:1.25; }
     ht = setTimeout(function(){ document.body.classList.add('idle'); }, 2000);
   });
   ht = setTimeout(function(){ document.body.classList.add('idle'); }, 2000);
-
-  /* タッチ（タブレット・トラックパッド用） */
-  var tx = null;
-  document.addEventListener('touchstart', function(e){ tx = e.changedTouches[0].clientX; }, {passive:true});
-  document.addEventListener('touchend', function(e){
-    if (tx === null) return; var d = e.changedTouches[0].clientX - tx; tx = null;
-    if (Math.abs(d) > 60){ d < 0 ? next() : prev(); }
-  }, {passive:true});
 
   var m = /#\/(\d+)/.exec(location.hash);
   if (m && parseInt(m[1],10) !== 1) start.classList.add('off');

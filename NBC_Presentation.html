@@ -100,6 +100,7 @@ h3{ font-size:66px; font-weight:800; line-height:1.25; }
   border:4px solid var(--ink); border-radius:999px; background:#fff;
 }
 .chip.soft{ border-color:var(--ink-3); color:var(--ink-2); background:transparent; }
+.chips.sm .chip{ font-size:52px; padding:18px 34px; border-width:4px; }
 
 .steps{ display:flex; align-items:stretch; gap:0; width:100%; }
 .step{ flex:1; text-align:center; padding:0 24px; }
@@ -107,6 +108,10 @@ h3{ font-size:66px; font-weight:800; line-height:1.25; }
 .step .t{ font-size:74px; font-weight:800; line-height:1.25; margin-top:18px; }
 .step .d{ font-size:40px; color:var(--ink-2); margin-top:18px; line-height:1.45; }
 .arrow{ display:flex; align-items:center; font-size:96px; color:var(--gold); font-weight:300; }
+.steps.q4 .step{ padding:0 14px; }
+.steps.q4 .step .t{ font-size:58px; }
+.steps.q4 .step .d{ font-size:36px; }
+.steps.q4 .arrow{ font-size:72px; }
 
 .cards{ display:flex; gap:34px; width:100%; }
 .card{
@@ -136,8 +141,9 @@ h3{ font-size:66px; font-weight:800; line-height:1.25; }
 .vcard .v{ font-size:70px; font-weight:800; line-height:1.05; font-feature-settings:"tnum"; }
 .vcard .v .u{ font-size:40px; }
 .vcard .v .sl{ font-size:44px; color:var(--ink-3); }
-.vcard .sub{ font-size:32px; color:var(--ink-2); margin-top:8px; }
-.vcard.act .sub{ color:var(--gold); font-weight:800; }
+.vcard .sub{ font-size:32px; color:var(--ink-2); margin-top:8px; line-height:1.3; }
+.vcard .fix{ font-size:30px; font-weight:800; color:var(--ink-3); letter-spacing:.06em; margin-top:8px; }
+.vcard.act .fix{ color:var(--gold); }
 
 .vfig .ink{ fill:none; stroke:var(--ink); stroke-width:5; stroke-linecap:round; stroke-linejoin:round; }
 .vfig .tick{ stroke:var(--ink-3); stroke-width:4; }
@@ -324,6 +330,39 @@ h3{ font-size:66px; font-weight:800; line-height:1.25; }
 .s .inner{ display:flex; flex-direction:column; flex:1 1 auto; width:100%; min-height:0; transform-origin:50% 0; }
 .s.center .inner{ align-items:center; justify-content:center; text-align:center; }
 
+/* ---------- 02 論語（知・好・楽） ---------- */
+.kanbun{ font-family:var(--serif); font-size:54px; font-weight:700; letter-spacing:.16em; color:var(--ink-2); }
+.trio{ display:flex; align-items:flex-start; justify-content:center; margin:46px 0 40px; }
+.trio .gl{ text-align:center; }
+.trio .gl .ch{ font-family:var(--serif); font-size:200px; font-weight:700; line-height:1; }
+.trio .gl .rd{ font-size:42px; font-weight:800; color:var(--ink-2); margin-top:16px; letter-spacing:.1em; }
+.trio .gl.last .ch{ color:var(--gold); }
+.trio .lt{ font-size:96px; color:var(--gold); font-weight:300; padding:0 46px; margin-top:34px; }
+.yomi{ font-size:42px; font-weight:700; color:var(--ink-2); line-height:1.65; }
+
+/* ---------- 06 今日のテーマ ---------- */
+.premise{ font-size:52px; font-weight:700; color:var(--ink-2); line-height:1.5; }
+
+/* ---------- 11 二つの表情（伝聞・官能・設計を層に分ける） ----------
+   産地と香味を左右で対応させるレイアウトにはしない。
+   「どちらの香味がどの産地に由来するか」という主張に読まれてしまうため。 */
+.layers{ width:100%; display:flex; flex-direction:column; gap:20px; }
+.layer{ display:flex; align-items:center; gap:30px; }
+.layer .lb{ flex:0 0 300px; text-align:right; padding-right:26px; border-right:6px solid var(--gold-soft);
+  font-size:34px; font-weight:800; color:var(--ink-2); line-height:1.35; letter-spacing:.04em; }
+.layer .bd{ flex:1; }
+.heard{ font-size:46px; font-weight:800; line-height:1.45; }
+.heard i{ font-style:normal; color:var(--gold); }
+.felt{ display:flex; gap:26px; }
+.felt div{ flex:1; border:5px solid var(--ink); background:#fff; padding:22px 24px;
+  font-size:42px; font-weight:800; line-height:1.35; text-align:center; }
+.because{ font-size:44px; font-weight:800; line-height:1.45; }
+
+/* ---------- 16 一人の飲み手として ---------- */
+.quo{ display:flex; gap:40px; }
+.quo div{ flex:1; border:5px solid var(--ink-3); background:#fff; padding:32px 28px;
+  text-align:center; font-size:54px; font-weight:800; line-height:1.35; }
+
 /* ---------- クローム ---------- */
 #bar{ position:absolute; left:0; bottom:0; height:10px; background:var(--gold); z-index:5; transition:width .3s; }
 #pg{ position:absolute; right:52px; bottom:22px; z-index:5; font-size:30px; font-weight:700; color:var(--ink-2); font-feature-settings:"tnum"; }
@@ -412,57 +451,79 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
   <div style="font-size:52px;letter-spacing:.28em;color:var(--gold);margin-top:26px;font-weight:700">THE BLUEPRINT OF A CUP</div>
   <div style="width:280px;height:5px;background:var(--ink);margin:56px 0"></div>
   <div class="big" style="font-weight:700">しもきた茶苑大山　茶師十段之茶「拓朗（午）」</div>
-  <div class="notes"><h4>0:00–0:45 ／ 発話</h4>自己紹介。ここではまだ「茶業者でも茶道家でもない」とは言わない。終盤で明かす。</div>
+  <div class="notes"><h4>0:00–0:20 ／ 発話</h4>「日本茶インストラクター協会北海道支部より参りました、根本拓と申します。」<br>ここは名乗りだけ。立場や思想は語らない。<br><b>次ページへのきっかけ：</b>「まず初めに、論語にこんな言葉があります。」</div>
 </section>
 
-<!-- ============ 02 日本茶観 ============ -->
-<section class="s center" data-t="入口が広く、奥が深い">
-  <h2 style="font-size:104px">日本茶は、<span class="mark">入口が広い。</span></h2>
-  <div class="lead" style="font-size:60px;margin-top:26px">ただ美味しく飲むだけでも、十分に楽しい。</div>
-  <div style="font-size:80px;color:var(--gold);margin:38px 0 34px">▼</div>
-  <h2 style="font-size:104px;margin-bottom:44px">そして、<span class="mark">その先は限りない。</span></h2>
-  <div class="chips">
-    <span class="chip">産地</span><span class="chip">品種</span><span class="chip">栽培</span>
-    <span class="chip">製茶</span><span class="chip">合組</span><span class="chip">火入れ</span>
-    <span class="chip">歴史</span><span class="chip">文化</span><span class="chip">科学</span>
+<!-- ============ 02 論語（知・好・楽） ============ -->
+<section class="s center" data-t="論語：知る・好む・楽しむ">
+  <div class="eyebrow">論語 ／ 雍也篇</div>
+  <div class="kanbun">子曰、知之者不如好之者、好之者不如楽之者</div>
+  <div class="trio">
+    <div class="gl"><div class="ch">知</div><div class="rd">知る</div></div>
+    <div class="lt">＜</div>
+    <div class="gl"><div class="ch">好</div><div class="rd">好む</div></div>
+    <div class="lt">＜</div>
+    <div class="gl last"><div class="ch">楽</div><div class="rd">楽しむ</div></div>
   </div>
-  <div class="notes"><h4>0:00–0:45 ／ 発話</h4>知識がなくても日本茶は楽しめる。でも知ることで、別の楽しみ方が増えていく。「難しくすること」と「知識や技術を大切にすること」は違う。</div>
+  <div class="yomi">これを知る者は、これを好む者に如かず。<br>これを好む者は、これを楽しむ者に如かず。</div>
+  <div class="notes"><h4>0:20–0:50 ／ 発話</h4>台本の起点。ここで置いた「知る → 好む → 楽しむ」は、<b>15ページの循環図（知る→試す→味わう→調整）で回収する</b>。<br>読み下しは画面に出してあるので、読み上げなくてよい。原文だけ引いて、あとは自分の言葉で「知ることの先に、楽しむがある」と繋げる。<br><b>次ページへのきっかけ：</b>「ただ美味しくお茶を飲むだけでも、日本茶との十分な付き合い方だと思います。」</div>
 </section>
 
-<!-- ============ 03 2019年の出会い ============ -->
-<section class="s" data-t="2019年、拓朗との出会い">
-  <div class="head"><div class="eyebrow">2019</div><h2>「美味しい」から「なぜ？」へ</h2></div>
-  <div class="steps" style="flex:1;align-items:center">
+<!-- ============ 03 日本茶観 ============ -->
+<section class="s center" data-t="入口が広く、その先は限りない">
+  <h2 style="font-size:96px">日本茶は、<span class="mark">入口が広い。</span></h2>
+  <div class="lead" style="font-size:52px;margin-top:22px">ただ美味しく飲むだけでも、十分な付き合い方。</div>
+  <div style="font-size:70px;color:var(--gold);margin:30px 0 26px">▼</div>
+  <h2 style="font-size:96px;margin-bottom:34px">その先は、<span class="mark">限りない。</span></h2>
+  <div class="chips sm">
+    <span class="chip">産地</span><span class="chip">品種</span><span class="chip">栽培</span>
+    <span class="chip">製茶</span><span class="chip">歴史</span><span class="chip">文化</span>
+    <span class="chip">科学</span>
+  </div>
+  <div class="big" style="margin-top:40px;font-size:56px;line-height:1.45">知ったことを手掛かりに、考え、試しながら味わう。<br>それも、日本茶を<span class="mark">楽しむ</span>ということ。</div>
+  <div class="notes"><h4>0:50–1:20 ／ 発話</h4>一杯の背景に少し興味を持つと、産地・品種・栽培・製茶技術、歴史や文化、そして科学がある。<b>入口の広さと、その先の奥深さの両方が面白い</b>という話。<br>下段の一行が、前ページの「楽」の回収。<br>「難しくすること」と「知識や技術を大切にすること」は違う、という含みは残す。<br><b>次ページへのきっかけ：</b>「そのきっかけとなったものの一つが、『合組』でした。」→「今日淹れるのは、しもきた茶苑大山さまの『茶師十段之茶 拓朗』です。」</div>
+</section>
+
+<!-- ============ 04 「茶師」って、なんだろう ============ -->
+<section class="s" data-t="2019年・下北沢／「茶師」って、なんだろう">
+  <div class="head"><div class="eyebrow">2019 ／ 東京・下北沢</div><h2>「茶師」って、なんだろう。</h2></div>
+  <div class="steps q4" style="flex:1;align-items:center">
     <div class="step">
       <div class="n">01</div>
-      <div class="t">美味しい</div>
-      <div class="d">淹れ方を変えても、<br>どれも美味しかった</div>
+      <div class="t">荒茶を<br>仕入れる</div>
+      <div class="d">産地から届いた、<br>仕上げ前のお茶</div>
     </div>
     <div class="arrow">→</div>
     <div class="step">
       <div class="n">02</div>
-      <div class="t">なぜ？</div>
-      <div class="d">この味は、<br>どこから来ているのか</div>
+      <div class="t">個性を<br>見極める</div>
+      <div class="d">その茶が何を<br>持っているか</div>
     </div>
     <div class="arrow">→</div>
     <div class="step">
-      <div class="n">03</div>
-      <div class="t gold">茶師・合組</div>
-      <div class="d">美味しさの背景に<br>「人」と「技術」がある</div>
+      <div class="n gold">03</div>
+      <div class="t gold">火入れ・<br>合組</div>
+      <div class="d">火を入れ、<br>複数の茶を組み合わせる</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="step">
+      <div class="n">04</div>
+      <div class="t">一つの商品<br>に仕上げる</div>
+      <div class="d">一つの完成した<br>お茶として世に出す</div>
     </div>
   </div>
-  <div class="big" style="text-align:center;margin-top:20px;line-height:1.45">正解を探すより、<br><span class="mark">どんな側面を引き出せるか</span>を考えるようになった。</div>
-  <div class="notes"><h4>0:45–1:35 ／ 発話</h4>2019年に初めて「拓朗」を飲んだ。温度や時間を変えて何度も淹れた。どれも美味しかった。産地ばかり見ていた自分にとって「下北沢の茶師」は意外だった。合組を、品質や価格の調整ではなく、個性を見極めて一つに仕上げる技術として知った。</div>
+  <div class="big" style="text-align:center;margin-top:20px;line-height:1.45">お茶の産地ではない街に、<br><span class="mark">お茶を仕上げる技術</span>があった。</div>
+  <div class="notes"><h4>1:20–1:50 ／ 発話</h4>2019年頃、まだ煎茶の違いもよくわかっていなかった。産地ではない東京の下北沢で「茶師」という言葉に出会い、何のことだろうと調べた——という順序で話す。<br>合組は<b>品質や価格の調整ではなく、個性を見極めて一つに仕上げる技術</b>として紹介する。<br><b>次ページへのきっかけ：</b>「伺ったところ、静岡県川根本町のお茶をベースに、鹿児島県産のお茶を組み合わせているそうです。」</div>
 </section>
 
-<!-- ============ 04 茶師の設計 ============ -->
-<section class="s" data-t="茶師の設計（合組）">
+<!-- ============ 05 拓朗（午）という設計 ============ -->
+<section class="s" data-t="拓朗（午）＝設計された飲み物">
   <div class="head"><div class="eyebrow">THE DESIGN</div><h2>茶師が、一つにまとめた茶</h2></div>
   <div style="flex:1;display:flex;align-items:center;justify-content:center;gap:0">
     <div style="text-align:center;flex:1">
-      <div style="font-size:64px;font-weight:800">川根本町</div>
-      <div style="font-size:44px;color:var(--ink-2);margin-top:12px">に求めた役割</div>
-      <div style="font-size:82px;font-weight:800;color:var(--gold);margin-top:20px">香気ありき</div>
+      <div style="font-size:36px;font-weight:800;letter-spacing:.18em;color:var(--gold)">BASE</div>
+      <div style="font-size:72px;font-weight:800;margin-top:16px;line-height:1.25">静岡県<br>川根本町</div>
+      <div style="font-size:40px;color:var(--ink-2);margin-top:20px">これをベースに</div>
     </div>
     <div style="font-size:88px;color:var(--gold);font-weight:300;padding:0 26px;flex:none">→</div>
     <div style="width:340px;height:340px;border-radius:50%;background:var(--gold);color:var(--paper);
@@ -473,16 +534,26 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
     </div>
     <div style="font-size:88px;color:var(--gold);font-weight:300;padding:0 26px;flex:none">←</div>
     <div style="text-align:center;flex:1">
-      <div style="font-size:64px;font-weight:800">鹿児島</div>
-      <div style="font-size:44px;color:var(--ink-2);margin-top:12px">に求めた役割</div>
-      <div style="font-size:82px;font-weight:800;color:var(--gold);margin-top:20px">穏やかな旨味</div>
+      <div style="font-size:36px;font-weight:800;letter-spacing:.18em;color:var(--gold)">BLEND</div>
+      <div style="font-size:72px;font-weight:800;margin-top:16px;line-height:1.25">鹿児島県産<br>のお茶</div>
+      <div style="font-size:40px;color:var(--ink-2);margin-top:20px">これを組み合わせて</div>
     </div>
   </div>
-  <div class="big" style="text-align:center">淹れ手はまず、これを<span class="mark">一つの完成した茶</span>として受け取る。</div>
-  <div class="notes"><h4>1:35–2:20 ／ 発話</h4>しもきた茶苑大山からの一次情報。地域・品種を過度に固定せず、その年の条件の中で「飲み飽きしない」「一角上」を目指して合組されている。<br><b>注意：産地を分離して抽出する、とは言わない。</b>茶師が一つにまとめた茶から、異なる側面を表現する、という言い方に留める。</div>
+  <div class="big" style="text-align:center;line-height:1.45">熱湯で淹れても、低温で淹れても、美味しい。<br><span class="mark">「これは、設計された飲み物だ。」</span></div>
+  <div class="notes"><h4>1:50–2:20 ／ 発話</h4>合組の内容は<b>しもきた茶苑大山さまに伺った一次情報</b>。「伺ったところ」と前置きして話す。<br>「設計された飲み物だ」という驚きが、この発表のタイトル「一杯の設計図」の由来。ここは強めに置く。<br><b>このページでは、産地ごとの香味の役割（山の香気／穏やかな甘み）は出さない。</b>それは呈茶後の11ページで、私の官能表現と分けて示す。<br><b>注意：産地を分離して抽出する、とは絶対に言わない。</b><br><b>次ページへのきっかけ：</b>「茶師が考え尽くした設計があるのであれば、」</div>
 </section>
 
-<!-- ============ 05 4つの変数 ============ -->
+<!-- ============ 06 今日のテーマ ============ -->
+<section class="s center" data-t="今日のテーマ（あえて、二つが分かる一杯を）">
+  <div class="eyebrow">TODAY'S THEME</div>
+  <div class="premise">茶師が考え尽くした設計があるのなら、<br>奇をてらわず、普通に淹れるのが筋。</div>
+  <div style="font-size:62px;font-weight:800;color:var(--gold);margin:26px 0 24px">それでも、あえて。</div>
+  <h2 style="font-size:80px;line-height:1.35">「二種類のお茶が<span class="mark">含まれていると分かる</span>」<br>一杯を作ってみる。</h2>
+  <div class="big" style="margin-top:44px;font-size:54px;line-height:1.45">淹れ手が狙いを持って、お茶を淹れる。<br>その<span class="mark">プロセス自体</span>も、一緒に楽しんでいただけたら。</div>
+  <div class="notes"><h4>2:20–2:45 ／ 発話</h4>台本C節。<b>この発表の狙いを宣言するページ</b>。<br>「筋を通すなら普通に淹れる。それでも、あえて」という言い方で、茶師の設計への敬意を先に置いてから踏み出す。<br><b>言い方の境界：</b>「二種類が<b>含まれていると分かる</b>一杯」。<b>「産地を淹れ分ける」「分けて抽出する」とは言わない</b>（22ページのQ&A 04と同じ境界）。<br><b>次ページへのきっかけ：</b>「まず、淹れ手がコントロールできる変数は4つあります。」</div>
+</section>
+
+<!-- ============ 07 4つの変数 ============ -->
 <section class="s" data-t="淹れ手が動かせる4つの変数">
   <div class="head"><div class="eyebrow">THE VARIABLES</div><h2>淹れ手が動かせるのは、この4つ</h2></div>
   <div class="vgrid" style="flex:1">
@@ -504,7 +575,8 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
         <line class="ml200" x1="52" y1="114" x2="148" y2="114"/>
       </svg>
       <div class="v">200<span class="u">mL</span></div>
-      <div class="sub">今回は固定</div>
+      <div class="sub">1椀40mL × 5碗</div>
+      <div class="fix">今回は固定</div>
     </div>
 
     <!-- 茶葉量：一枚ずつ落ちて7gになる -->
@@ -540,7 +612,8 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
         <path class="ink" d="M18,180 L182,180"/>
       </svg>
       <div class="v">7<span class="u">g</span></div>
-      <div class="sub">今回は固定</div>
+      <div class="sub">湯量に対して決まる</div>
+      <div class="fix">今回は固定</div>
     </div>
 
     <!-- 温度：50℃まで青、その上に90℃まで赤 -->
@@ -555,7 +628,8 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
         <line class="m90" x1="122" y1="64" x2="146" y2="64"/>
       </svg>
       <div class="v"><span style="color:var(--cold)">50</span> <span class="sl">/</span> <span style="color:var(--hot)">90</span><span class="u">℃</span></div>
-      <div class="sub">今回動かす</div>
+      <div class="sub">2種類の湯を使い分ける</div>
+      <div class="fix">今回動かす</div>
     </div>
 
     <!-- 時間：外周が60秒、内周がその1/6＝10秒 -->
@@ -571,15 +645,18 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
         <g class="tick"><line x1="100.0" y1="72.0" x2="100.0" y2="65.0"/><line x1="144.0" y1="83.8" x2="147.5" y2="77.7"/><line x1="176.2" y1="116.0" x2="182.3" y2="112.5"/><line x1="188.0" y1="160.0" x2="195.0" y2="160.0"/><line x1="176.2" y1="204.0" x2="182.3" y2="207.5"/><line x1="144.0" y1="236.2" x2="147.5" y2="242.3"/><line x1="100.0" y1="248.0" x2="100.0" y2="255.0"/><line x1="56.0" y1="236.2" x2="52.5" y2="242.3"/><line x1="23.8" y1="204.0" x2="17.7" y2="207.5"/><line x1="12.0" y1="160.0" x2="5.0" y2="160.0"/><line x1="23.8" y1="116.0" x2="17.7" y2="112.5"/><line x1="56.0" y1="83.8" x2="52.5" y2="77.7"/></g>
       </svg>
       <div class="v">60 <span class="sl">/</span> 10<span class="u">秒</span></div>
-      <div class="sub">今回動かす</div>
+      <div class="sub">どの湯に、何秒浸すか</div>
+      <div class="fix">今回動かす</div>
     </div>
 
   </div>
   <div class="big" style="text-align:center">茶葉にない味は作れない。<span class="mark">表れ方を変えられる。</span></div>
-  <div class="notes"><h4>2:20–2:55 ／ 発話</h4>ページを開くと4つの図が左から順に動きます（湯が200mLまで注がれる→茶葉が7g積もる→温度計が50℃・90℃へ→文字盤が60秒・10秒を描く。約3.5秒で完了）。キー操作は不要。<br>「ない袖は振れない」。茶葉そのものに成分と個性があるからこそ、抽出条件で異なる側面を表出させられる。<br>この後、2:55–3:20は所作（7g／50℃・30mL注湯）。重要な発話はしない。</div>
+  <div class="notes"><h4>2:45–3:15 ／ 発話</h4>ページを開くと4つの図が左から順に動きます（湯が200mLまで注がれる→茶葉が7g積もる→温度計が50℃・90℃へ→文字盤が60秒・10秒を描く。約3.5秒で完了）。キー操作は不要。<br>
+  <b>話す順序（台本どおり）：</b>①湯量は自ずと決まる。1椀40mL程度 × 5碗で200mL。②茶葉量は湯量に対して相対的に決まる。適切な濃さとして7g。③温度と時間は、2種類の異なる温度の湯を使い、どの温度の湯に何秒浸すかを調節する。<br>
+  「ない袖は振れない」。茶葉そのものに成分と個性があるからこそ、抽出条件で異なる側面を表出させられる。<br><b>次ページへのきっかけ：</b>「それでは一煎目を淹れます。」</div>
 </section>
 
-<!-- ============ 06 一煎目レシピ（ヒーロー・注湯所作中） ============ -->
+<!-- ============ 08 一煎目レシピ（ヒーロー・注湯所作中） ============ -->
 <section class="s" data-t="一煎目レシピ ★所作中はこのページ">
   <div class="head" style="margin-bottom:30px"><div class="eyebrow">THE FIRST BREW</div><h2>一煎目</h2></div>
   <div class="leafline" style="margin-bottom:30px"><span style="font-size:44px;color:var(--ink-2);font-weight:700">総湯量</span><span class="g">200mL</span><span style="color:var(--ink-3)">／</span><span style="font-size:44px;color:var(--ink-2);font-weight:700">茶葉</span><span class="g">7g</span></div>
@@ -623,10 +700,12 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
       <div class="why">温度を上げて、<br>短時間で注ぎ分ける</div>
     </div>
   </div>
-  <div class="notes"><h4>2:55–3:20 ／ 所作（茶葉7g・50℃30mLの注湯）</h4>重要な発話はしない。このページを出したまま手を動かし、注湯を終えたら次ページへ進んで60秒の説明に入る。<br>ページを開くと自動で動きます（PHASE 1が表示→<b>山吹色</b>が碗に注がれる→PHASE 2が表示→<b>緑</b>が上に重なる。約4.2秒で完了）。キー操作は不要。<br><b>碗の二層は「一杯の中に二つの表情」（9ページ）の伏線</b>。二層に分けて描いているのは、<b>2つの湯を区別するための図式的な色分け</b>であって、茶湯の色を実測したものではない。聞かれたら「実際には急須の中で混ざります」と答える。</div>
+  <div class="notes"><h4>3:15–3:45 ／ 所作（茶葉7g・50℃30mLの注湯）</h4><b>ここは重要な発話をしない。</b>このページを出したまま手を動かす。<br>
+  <b>所作（台本）：</b>湯を茶碗に入れ、急須に入れたあと湯冷しに注ぐ → 茶葉を茶入から茶則に取り出し、茶入に蓋 → 葉を茶則から急須へ → 茶則は茶入に傾けて置く → 急須を少し振って茶葉を均す → 湯冷しを手に持ち、少し揺らして手で温度を確かめ、ゆっくり急須に注ぐ → <b>ここでタイマースタート</b>。<br>
+  注ぎ終えたら次ページへ進み、60秒のあいだに成分の説明をする。<br>ページを開くと自動で動きます（PHASE 1が表示→<b>山吹色</b>が碗に注がれる→PHASE 2が表示→<b>緑</b>が上に重なる。約4.2秒で完了）。キー操作は不要。<br><b>碗の二層は「一杯の中に二つの表情」（11ページ）の伏線</b>。二層に分けて描いているのは、<b>2つの湯を区別するための図式的な色分け</b>であって、茶湯の色を実測したものではない。聞かれたら「実際には急須の中で混ざります」と答える。<br><b>次ページへのきっかけ：</b>「お茶の主要な味わいを構成する成分について、既存の研究では、」</div>
 </section>
 
-<!-- ============ 07 溶出アニメーション（60秒浸出中） ============ -->
+<!-- ============ 09 溶出アニメーション（60秒浸出中） ============ -->
 <section class="s" data-t="成分の溶け出し方（アニメ・→で3段階）" data-steps="2" data-step="0">
   <div class="head" style="margin-bottom:14px"><div class="eyebrow">THE SCIENCE</div><h2 style="font-size:80px">成分は、同じようには溶け出さない</h2></div>
   <div class="sidenote">同じ茶葉を <span style="color:var(--cold)">50℃</span> ／ <span style="color:var(--warm)">70℃</span> ／ <span style="color:var(--hot)">90℃</span> で、それぞれ 60秒 淹れたとき</div>
@@ -667,14 +746,15 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
   </div>
 
   <div class="cap" style="font-size:46px">
-    <div class="c1">低温で時間をかけると、<span class="mark">アミノ酸類が先に出る。</span><span class="hint">　→ 温度を上げると</span></div>
-    <div class="c2">温度を上げると、<span class="mark">カテキン類もカフェインも大きく出る。</span><span class="hint">　→ さらに90℃なら</span></div>
-    <div class="c3">90℃で60秒なら、<span class="mark">苦味も、重い苦渋味も一気に出る。</span></div>
+    <div class="c1">旨味・甘みの成分は、<span class="mark">低い温度でも溶け出しやすい。</span><span class="hint">　→ 温度を上げると</span></div>
+    <div class="c2">テアニンも増える。だが<span class="mark">苦味・渋みの成分の増え方が上回る。</span><span class="hint">　→ さらに90℃なら</span></div>
+    <div class="c3">高温では、<span class="mark">苦味も渋みも短時間で出る。</span>味わいのバランスが変わる。</div>
   </div>
   <div class="src">坂本ら（2002）茶業研究報告 94:45-55、表2・表3（p.49）／深蒸し上級煎茶4g・湯120mL・1煎目60秒。<b>3つの温度は、それぞれ別々に淹れた1煎目を並べたもの</b>で、低温のあとに高温を重ねた結果ではない。アミノ酸類（表3）に90℃条件はない。カフェインは表2（茶葉中2.9%）。拓朗（午）の実測値でもない。</div>
 
-  <div class="notes"><h4>3:20–4:20 ／ 60秒浸出中の発話（このページで前半を使う）</h4>→ キーで 70℃ → 90℃ と段階的に伸びます（計2回）。<br>
-  <b>この3段で言いたいこと：</b>①低温ではアミノ酸が先に出る ②温度を上げるとカテキンとカフェインが出る ③90℃で60秒も置くと苦味も重い苦渋味も出る → <b>だから追い湯は温度を上げたうえで10秒で切る</b>（次ページ）。<br>
+  <div class="notes"><h4>3:45–4:45 ／ 60秒浸出中の発話（このページで前半を使う）</h4>→ キーで 70℃ → 90℃ と段階的に伸びます（計2回）。台本では「グラフを見せながら」と明記されている箇所。<br>
+  <b>台本の言い回しと3段の対応：</b>①「テアニンのような旨味・甘み成分は低い温度でも溶出しやすい」＝入った時点（50℃）②「温度を上げていくに従って、テアニンの溶出量も増えますが」＝<b>1回目</b>（70℃）③「特に高温になるとカテキンやカフェインといった苦味、渋みの成分が短時間でも溶出しやすくなるため、味わいのバランスが変化してまいります」＝<b>2回目</b>（90℃）。<br>
+  そのうえで「今回は、合組されている2種類のお茶が持つ良さを際立たせるため、成分が溶出する性質の差を利用した淹れ方としました」と言って<b>3回目</b>（次ページ＝追い湯）へ。<br>
   <b>言ってはいけない：</b>「50℃なら旨味だけが出る」「低温ならカフェインは出ない」。このグラフを「一煎目の一段目→二段目」として説明しない（別々に淹れた1煎目の比較）。<br>
   <hr style="border:0;border-top:1px solid #4A6154;margin:14px 0">
   <b>想定質問①「テアニンの90℃は？」</b><br>
@@ -688,11 +768,12 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
   <b>（追い問い）「60℃は？」</b>表2の60℃は38.4%で、70℃の34.6%より高い（逆転している）。論文は同じ段落の冒頭で「一部分析値にばらつきが認められた」と断っている。このスライドは50／70／90℃の3点で、その範囲では単調に増加するため60℃は載せていない。<b>（追い問い）「低温なら少ないのでは？」</b>50℃でも21.6%は出る。論文も「低温でもある程度溶出した」（p.50）と書いている。</div>
 </section>
 
-<!-- ============ 08 二段構えの設計（アニメ・追い湯所作中） ============ -->
+<!-- ============ 10 二段構えの設計（アニメ・追い湯所作中） ============ -->
 <section class="s" data-t="だから一煎目は二段（アニメ）★追い湯所作">
-  <div class="head" style="margin-bottom:20px"><div class="eyebrow">THE FIRST BREW ／ DESIGN</div><h2>だから、一煎目は二段で淹れる</h2></div>
+  <div class="head" style="margin-bottom:12px"><div class="eyebrow">THE FIRST BREW ／ DESIGN</div><h2>だから、一煎目は二段で淹れる</h2></div>
+  <div class="sidenote" style="font-size:34px;margin-bottom:10px">合組された二つの茶の良さを際立たせるために、成分が<span style="color:var(--gold)">溶け出す性質の差</span>を使う</div>
 
-  <svg class="tl" viewBox="0 0 1600 430" role="img" aria-label="一煎目の温度と時間の設計">
+  <svg class="tl" viewBox="0 0 1600 430" style="height:410px" role="img" aria-label="一煎目の温度と時間の設計">
     <!-- 目盛り -->
     <line x1="110" y1="380" x2="1520" y2="380" stroke="#8A9A90" stroke-width="3"/>
     <line x1="110" y1="300" x2="1520" y2="300" stroke="#1F6E96" stroke-width="3" stroke-dasharray="12 12" opacity=".45"/>
@@ -738,30 +819,40 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
       </ul>
     </div>
   </div>
-  <div class="notes"><h4>4:20–5:20 ／ 60秒説明の締め〜追い湯・抽出・注ぎ分け・呈茶</h4>「では、追い湯をします」でこのページへ。以降は原則として重要な発話はしない。<br>混合温度は熱損失を無視した単純計算で約84℃。実際には急須・茶葉への熱移動でさらに数℃下がる。<br><b>言い方：</b>ガレート型を「抑え込む」ではなく「出過ぎを避けることを狙う」。<br>
-  前ページで見たとおり、90℃・60秒ならカフェインは62.7%、EGCgは31.5%まで出る。抑えているのは温度ではなく<b>時間</b>。<br><b>PHASE 1の「カテキン類はまだ出にくい」について：</b>前ページでカフェインは50℃でも21.6%（EGCの17.5%より多い）と出ている。突かれたら「低温で出にくいのはカテキン類、とくにガレート型であって、カフェインは低温でもある程度出る」と正直に答える（論文 p.50 の記述どおり）。</div>
+  <div class="notes"><h4>4:45–5:45 ／ 追い湯・抽出・廻し注ぎ・呈茶</h4>台本の「今回は、合組されている2種類のお茶が持つ良さを際立たせるため、成分が溶出する性質の差を利用した淹れ方としました」でこのページへ。<b>そのまま90℃の湯を急須に注ぎ始める。</b>以降は原則として重要な発話はしない。<br>
+  <b>所作（台本）：</b>90℃を注ぐ → すぐに廻し注ぎ → 注ぎ終わったら茶碗の糸底を拭いて茶托に並べる → 配膳してもらう。<br>混合温度は熱損失を無視した単純計算で約84℃。実際には急須・茶葉への熱移動でさらに数℃下がる。<br><b>言い方：</b>ガレート型を「抑え込む」ではなく「出過ぎを避けることを狙う」。<br>
+  前ページで見たとおり、90℃・60秒ならカフェインは62.7%、EGCgは31.5%まで出る。抑えているのは温度ではなく<b>時間</b>。<br><b>PHASE 1の「カテキン類はまだ出にくい」について：</b>前ページでカフェインは50℃でも21.6%（EGCの17.5%より多い）と出ている。突かれたら「低温で出にくいのはカテキン類、とくにガレート型であって、カフェインは低温でもある程度出る」と正直に答える（論文 p.50 の記述どおり）。<br><b>次ページへのきっかけ：</b>呈茶が終わり、審査員が飲み始めてから「この『拓朗』は、静岡県川根本町の『山の香気』をもつお茶をベースに、」</div>
 </section>
 
-<!-- ============ 09 一煎目の狙い ============ -->
-<section class="s" data-t="一煎目で感じてほしいこと">
-  <div class="head"><div class="eyebrow">THE SENSORY</div><h2>一杯の中に、二つの表情</h2></div>
-  <div style="flex:1;display:flex;gap:44px;align-items:center">
-    <div style="flex:1;border:6px solid var(--ink);background:#fff;padding:52px 40px;text-align:center">
-      <div style="font-size:44px;font-weight:800;color:var(--gold);letter-spacing:.1em">ONE</div>
-      <div style="font-size:82px;font-weight:800;line-height:1.3;margin-top:20px">山の香気<br>爽やかな渋み</div>
+<!-- ============ 11 一煎目の狙い（呈茶中） ============ -->
+<section class="s" data-t="一杯の中に、二つの表情">
+  <div class="head" style="margin-bottom:26px"><div class="eyebrow">THE SENSORY</div><h2>一杯の中に、二つの表情</h2></div>
+  <div class="layers" style="flex:1;justify-content:center">
+    <div class="layer">
+      <div class="lb">茶師に伺った<br>合組の設計</div>
+      <div class="bd"><div class="heard">静岡県川根本町の<i>「山の香気」</i>をもつお茶をベースに、<br>鹿児島県産の<i>「穏やかな甘み」</i>のあるお茶を組み合わせている。</div></div>
     </div>
-    <div style="font-size:80px;font-weight:800;color:var(--ink-2)">＋</div>
-    <div style="flex:1;border:6px solid var(--ink);background:#fff;padding:52px 40px;text-align:center">
-      <div style="font-size:44px;font-weight:800;color:var(--gold);letter-spacing:.1em">ANOTHER</div>
-      <div style="font-size:82px;font-weight:800;line-height:1.3;margin-top:20px">瓜のような<br>瑞々しい甘み</div>
+    <div class="layer">
+      <div class="lb">私が一杯から<br>感じ取ったもの</div>
+      <div class="bd"><div class="felt">
+        <div>若草のような爽やかな香りと、<br>煎茶らしいキレのある渋み</div>
+        <div>瓜のような<br>瑞々しい甘みと香り</div>
+      </div></div>
+    </div>
+    <div class="layer">
+      <div class="lb">だから、<br>この淹れ方に</div>
+      <div class="bd"><div class="because">これらが同居した一杯であることを強調するために、まず低温で浸出させ、<br><span class="mark">あとから高温の湯を当てて、渋味と香りを立ち上げた。</span></div></div>
     </div>
   </div>
-  <div class="big" style="text-align:center">同じ一杯の中で、<span class="mark">違う方向を向いた味と香り</span>を。</div>
-  <div class="notes"><h4>5:20–6:05 ／ 味わう時間＋発話</h4>審査員が味わう時間を確保する。すぐ二煎目へ行かない。<br><b>6ページの碗の二層（山吹＋緑）が視覚的な伏線になっている。</b>ただし二つの表情はあくまで官能表現であり、二段抽出がこの二つを生むと断定はしない。<br><b>言い方：</b>「私は瓜のような瑞々しい香りとして感じています」。特定の産地由来・特定の香気成分由来とは言わない。</div>
+  <div class="src" style="text-align:center">※ 上段は茶師に伺った合組の設計、中段は私自身の官能表現です。どちらの香味がどの産地に由来するか、という対応づけではありません。</div>
+  <div class="notes"><h4>5:45–6:30 ／ 味わう時間＋発話</h4>審査員が味わう時間を確保する。すぐ二煎目へ行かない。<br>
+  <b>このページの要点は、上段と中段を混ぜないこと。</b>上段（山の香気／穏やかな甘み）は<b>茶師に伺った設計</b>、中段（若草のような香り・キレのある渋み／瓜のような瑞々しい甘みと香り）は<b>私の官能表現</b>。左右で対応させて語らない。<br>
+  <b>言い方：</b>「私は瓜のような瑞々しい香りとして感じています」。特定の産地由来・特定の香気成分由来とは言わない。香気分析はしていない。<br>
+  <b>8ページの碗の二層（山吹＋緑）が視覚的な伏線。</b>ただし二段抽出がこの二つの表情を生む、と断定はしない。<br><b>次ページへのきっかけ：</b>「二煎目ですが、高温の90℃のお湯を直接当てて、」</div>
 </section>
 
-<!-- ============ 10 二煎目レシピ ============ -->
-<section class="s" data-t="二煎目レシピ ★所作中はこのページ">
+<!-- ============ 12 二煎目レシピ ============ -->
+<section class="s" data-t="二煎目レシピ ★淹れながら話す">
   <div class="head" style="margin-bottom:30px"><div class="eyebrow">THE SECOND BREW</div><h2>二煎目</h2></div>
   <div class="leafline" style="margin-bottom:36px"><span style="font-size:48px;font-weight:800">茶葉は同じ。条件だけを変える。</span></div>
   <div class="recipe" style="flex:1">
@@ -772,21 +863,23 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
         <span class="n1" style="font-size:172px">200<span class="u">mL</span></span>
         <span class="n1" style="font-size:172px">10<span class="u">秒</span></span>
       </div>
-      <div class="why" style="font-size:44px;margin-top:40px">一煎目で十分に吸水した茶葉に、高温の湯を短く当てる</div>
+      <div class="why" style="font-size:44px;margin-top:40px">一煎目で十分に吸水した茶葉は、一煎目よりも成分が溶出しやすい</div>
     </div>
   </div>
-  <div class="notes"><h4>6:05–7:00 ／ 所作（抽出・注ぎ分け・呈茶）</h4>原則として重要な発話はしない。科学説明は繰り返さず簡潔に。<br><b>安全な言い方：</b>「吸水済みの茶葉では高温・短時間でも成分の追加溶出が進むという報告があるので、長く置かずに切ります。」<br><b>言ってはいけない：</b>「90℃・10秒が科学的最適値」「出し切る」。</div>
+  <div class="notes"><h4>6:30–7:15 ／ 所作（抽出・注ぎ分け・呈茶）＋発話</h4><b>台本が変わり、このページは「話しながら淹れる」ページになった。</b>他の所作ページ（8・10）と違い、無言ではない。<br>
+  <b>台本：</b>「二煎目ですが、高温の90℃のお湯を直接当てて、時間をかけずに10秒程度で淹れます。」→ <b>ここで淹れてしまう</b> →「すでに吸水済みのお茶の葉に高温の湯を当てる二煎目の場合は、一煎目よりも成分が溶出しやすいという研究結果があります。今回は爽快でさっぱりとした二煎目を味わっていただきたいと思います。」<br>
+  科学説明は繰り返さず簡潔に。根拠の数値は21ページ（Q&A 03）にある。<br><b>言ってはいけない：</b>「90℃・10秒が科学的最適値」「出し切る」。<br><b>次ページへのきっかけ：</b>「今回は爽快でさっぱりとした二煎目を」</div>
 </section>
 
-<!-- ============ 11 二煎目の狙い ============ -->
+<!-- ============ 13 二煎目の狙い ============ -->
 <section class="s center" data-t="二煎目で感じてほしいこと">
   <div class="eyebrow">THE SECOND BREW</div>
-  <h2 style="font-size:120px;line-height:1.25">爽やかに、<span class="mark">簡潔に。</span></h2>
+  <h2 style="font-size:120px;line-height:1.25">爽快に、<span class="mark">さっぱりと。</span></h2>
   <div class="lead" style="font-size:60px;margin-top:44px;text-align:center">一煎目で残ったものを、<br>高温・短時間で引き出す。</div>
-  <div class="notes"><h4>7:00–7:30 ／ 味わう時間＋発話</h4>簡潔に。一煎目との違いを味わってもらう。</div>
+  <div class="notes"><h4>7:15–7:45 ／ 味わう時間</h4>台本の「爽快でさっぱりとした二煎目を味わっていただきたい」を受けるページ。ここは黙って、味わう時間を取る。<br><b>次ページへのきっかけ：</b>「一煎目と二煎目。茶葉は同じです。」（台本シードに本文がない箇所。自分の言葉で繋ぐ）</div>
 </section>
 
-<!-- ============ 12 比較 ============ -->
+<!-- ============ 14 比較 ============ -->
 <section class="s" data-t="同じ茶葉、異なる表情">
   <div class="head"><div class="eyebrow">SYNTHESIS</div><h2>同じ茶葉、異なる表情</h2></div>
   <div class="cmp" style="flex:1;align-content:center">
@@ -798,26 +891,16 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
     <div class="c">低温で時間を取り、<br>あとから温度を上げる</div>
     <div class="c">吸水済みの茶葉に<br>高温を短く当てる</div>
     <div class="rh">味わい</div>
-    <div class="c">複層的<br><span style="font-size:38px;color:var(--ink-2)">山の香気＋瑞々しい甘み</span></div>
-    <div class="c">爽快・簡潔<br><span style="font-size:38px;color:var(--ink-2)">そのお茶らしいキレ</span></div>
+    <div class="c">複層的<br><span style="font-size:38px;color:var(--ink-2)">爽やかな香りと渋み＋瑞々しい甘み</span></div>
+    <div class="c">爽快・さっぱり<br><span style="font-size:38px;color:var(--ink-2)">そのお茶らしいキレ</span></div>
   </div>
   <div class="big" style="text-align:center;margin-top:24px">どちらが好きかは、<span class="mark">人によって違っていい。</span></div>
-  <div class="notes"><h4>7:30 前後</h4>品質と嗜好は同じものではない。</div>
+  <div class="notes"><h4>7:45–8:05 ／ 発話</h4>台本シードに本文がない橋渡しのページ。品質と嗜好は同じものではない、という一点だけ置く。<br><b>次ページへのきっかけ：</b>「これは、正解の淹れ方ではありません。」</div>
 </section>
 
-<!-- ============ 13 これは正解ではない ============ -->
-<section class="s center" data-t="正解ではなく、一つの仮説">
-  <h2 style="font-size:96px;color:var(--ink-2);font-weight:700">これは、</h2>
-  <h2 style="font-size:104px;margin:18px 0 10px;white-space:nowrap">「正解の淹れ方」ではありません。</h2>
-  <div style="font-size:76px;color:var(--gold);margin:30px 0">▼</div>
-  <h2 style="font-size:126px;white-space:nowrap"><span class="mark">一つの仮説です。</span></h2>
-  <div class="lead" style="font-size:54px;margin-top:44px;text-align:center">積み重ねられてきた知見を土台に、<br>そこから一歩だけ踏み出してみた淹れ方。</div>
-  <div class="notes"><h4>7:30–8:15 ／ 発話</h4>今回の淹れ方が正解なのではないことを回収。知見を土台に、自分なりの一杯を考えることも日本茶の楽しみだと伝える。</div>
-</section>
-
-<!-- ============ 14 循環 ============ -->
-<section class="s" data-t="知る→試す→味わう→調整する">
-  <div class="head center" style="width:100%"><h2>知識は、正解ではなく、考える材料。</h2></div>
+<!-- ============ 15 正解ではなく、考える材料 ============ -->
+<section class="s" data-t="正解ではなく、一つの仮説／知る→試す→味わう→調整">
+  <div class="head center" style="width:100%"><h2>これは「正解の淹れ方」ではなく、<br><span class="mark">一つの仮説</span>です。</h2></div>
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
     <div class="loop">
       <div class="node"><div class="jp">知る</div><div class="en">LEARN</div></div>
@@ -835,30 +918,35 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
       <div style="flex:1;height:6px;background:var(--gold)"></div>
     </div>
   </div>
-  <div class="big" style="text-align:center">この<span class="mark">試行錯誤そのもの</span>が、日本茶の楽しみ方の一つ。</div>
-  <div class="notes"><h4>8:15 前後</h4>「もう少し温度を上げてみようかな」と思った時点で、その人はもう自分で一杯を考え始めている。</div>
+  <div class="big" style="text-align:center;line-height:1.45">知識は正解ではなく、<span class="mark">自分で考えるための材料</span>。<br><span style="font-size:46px;color:var(--ink-2);font-weight:700">積み重ねられてきた知見を土台に、そこから一歩だけ踏み出してみた淹れ方です。</span></div>
+  <div class="notes"><h4>8:05–8:35 ／ 発話</h4>台本C節の見出し「知識を『正解』ではなく、自分で考える材料にする」を回収するページ。<b>2ページの論語（知→好→楽）への折り返しでもある。</b><br>今回の淹れ方が正解なのではないこと、知見を土台に自分なりの一杯を考えることも日本茶の楽しみであること、この2つを言う。<br>「もう少し温度を上げてみようかな」と思った時点で、その人はもう自分で一杯を考え始めている。<br><b>次ページへのきっかけ：</b>「最後になりますが、」</div>
 </section>
 
-<!-- ============ 15 一人の飲み手として ============ -->
+<!-- ============ 16 一人の飲み手として ============ -->
 <section class="s" data-t="一人の飲み手として">
-  <div class="head"><div class="eyebrow">EPILOGUE</div><h2>私は、一人の飲み手です。</h2></div>
-  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:34px">
-    <div class="lead" style="font-size:58px;color:var(--ink)">茶業者でもなく、茶道家でもない。<br>ほとんどは、自分のために淹れて、自分で飲んでいます。</div>
-    <div style="height:5px;background:var(--ink-3);width:100%"></div>
-    <div class="big" style="line-height:1.5;font-size:60px">10年、20年経てば、次の世代が日本茶に出会う。<br>その人にとっては、<br><span class="mark">今ここにあるものが、新しい発見になる。</span></div>
+  <div class="head"><div class="eyebrow">EPILOGUE ／ 一人の飲み手として</div><h2 style="font-size:68px">日本茶は、何も知らなくても美味しく飲めます。</h2></div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:36px">
+    <div class="lead" style="font-size:52px;text-align:center">その上で、</div>
+    <div class="quo">
+      <div>「このお茶は、<br>どんなお茶だろう」</div>
+      <div>「どうやって<br>淹れてみよう」</div>
+    </div>
+    <div class="big" style="text-align:center;line-height:1.45">そう思ったなら、その時点で、<br><span class="mark">その一杯を自分で考え始めている。</span></div>
   </div>
-  <div class="notes"><h4>8:15–9:30 ／ 発話</h4>ここで初めて立場を明かす。日本茶の未来には、道具・淹茶法・製品・伝えること・受け継ぐことなど、さまざまなアプローチがある。それを尊重したうえで、自分の立場から見える未来を語る。対立として語らない。</div>
+  <div class="big" style="text-align:center;font-size:56px">私が伝えたいのは、まさにその<span class="mark">楽しさ</span>です。</div>
+  <div class="notes"><h4>8:35–9:15 ／ 発話</h4>台本F節。<b>「茶業者でもなく、茶道家でもない」という自己開示は、更新後の台本から削除されているため、スライドからも外した。</b>立場を明かして語るのではなく、「一人の飲み手」としての実感をそのまま置く構成。<br>
+  日本茶の未来には、道具・淹茶法・製品・伝えること・受け継ぐことなど、さまざまなアプローチがある。それを尊重したうえで、自分の立場から見える未来を語る。対立として語らない。<br><b>次ページへのきっかけ：</b>「10年、20年経てば、」</div>
 </section>
 
-<!-- ============ 16 締め ============ -->
+<!-- ============ 17 締め ============ -->
 <section class="s bare center" data-t="締め：キーフレーズ">
   <div style="position:absolute;left:46px;top:46px;right:46px;bottom:60px;border:3px double rgba(154,116,48,.5)"></div>
-  <div class="lead" style="font-size:52px;text-align:center;margin-bottom:52px">50年後、100年後にも、<br>お茶を淹れて、その違いを楽しんでいる人がいる。</div>
+  <div class="lead" style="font-size:52px;text-align:center;margin-bottom:52px">10年、20年経てば、また次の世代が日本茶に出会い、<br>何度でも再発見される。</div>
   <h1 style="font-size:108px;line-height:1.4">飲む人が、<br><span class="mark">日本茶を面白がり続けること。</span></h1>
-  <div class="notes"><h4>9:30–10:00 ／ 余白</h4>所作の遅延・自然な間を吸収する。予定どおりなら無理に埋めず自然に終了。</div>
+  <div class="notes"><h4>9:15–10:00 ／ 締め＋余白</h4>最後の一言は台本どおり「私は、それも日本茶を未来へつないでいくことの一つだと思っています。」<b>この一行は画面に出していない</b>ので、キーフレーズを残したまま自分の言葉で締める。<br>所作の遅延・自然な間はここで吸収する。予定どおりなら無理に埋めず自然に終了。</div>
 </section>
 
-<!-- ============ 17 Appendix 表紙 ============ -->
+<!-- ============ 18 Appendix 表紙 ============ -->
 <section class="s center" data-t="── Appendix（質疑用）">
   <div class="eyebrow">APPENDIX</div>
   <h1 style="font-size:150px">質疑応答用</h1>
@@ -866,7 +954,7 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
   <div class="notes"><h4>本編ここまで。以降は質問が出たときだけ。</h4></div>
 </section>
 
-<!-- ============ 18 なぜ50℃・60秒 ============ -->
+<!-- ============ 19 なぜ50℃・60秒 ============ -->
 <section class="s qa" data-t="Q. なぜ50℃・60秒？">
   <div class="head" style="margin-bottom:20px"><div class="eyebrow">Q&amp;A 01</div><div class="q">なぜ 50℃・60秒 なのか。</div></div>
   <div class="sidenote" style="margin-bottom:18px">同じ茶葉を <span style="color:var(--ink)">60秒</span> 淹れたとき、<span style="color:var(--ink)">旨味</span>と<span style="color:var(--ink)">重い苦渋味</span>の出方に、どれだけ差がつくか</div>
@@ -892,12 +980,12 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
   <div class="notes"><h4>Q&amp;A 01 ／ なぜ50℃か</h4>
   <b>言いたいこと：</b>温度を下げるほど、旨味と重い苦渋味（ガレート型カテキン）の「出方の差」は開く。ただし、そのぶん浸出に時間がかかる。<b>50℃・60秒は、差が残ったまま持ち時間に収まる点</b>として選んでいる。<br>
   <b>数値（坂本ら2002、表2・表3 p.49）：</b>50℃＝アスパラギン酸53.5／グルタミン酸52.4／セリン50.0／グルタミン47.0／テアニン40.5%、EGCg 6.9／ECg 7.3%、カフェイン21.6%。70℃＝テアニン49.3／EGC 33.2／EGCg 17.1／カフェイン34.6%。<br>
-  <b>想定質問「60℃は？」</b>→ 表2の60℃カフェインは38.4%で、70℃の34.6%を上回っている（逆転している）。論文は同じ段落の冒頭で「一部分析値にばらつきが認められた」と断っている。<b>7ページと同じ理由で、このページも50℃と70℃の2点で示している。</b>傾向としては60℃も差が縮む側。<br>
+  <b>想定質問「60℃は？」</b>→ 表2の60℃カフェインは38.4%で、70℃の34.6%を上回っている（逆転している）。論文は同じ段落の冒頭で「一部分析値にばらつきが認められた」と断っている。<b>9ページと同じ理由で、このページも50℃と70℃の2点で示している。</b>傾向としては60℃も差が縮む側。<br>
   <b>想定質問「40℃は？」</b>→ 論文に40℃条件はない。「40℃以下」は測定値ではなく、低温ほど差は開くが浸出は遅くなる、という傾向からの設計判断。<br>
   <b>言ってはいけない：</b>「50℃なら旨味だけが出る」。50℃でもカフェインは21.6%出ている。</div>
 </section>
 
-<!-- ============ 19 なぜ30mL ============ -->
+<!-- ============ 20 なぜ30mL ============ -->
 <section class="s qa" data-t="Q. なぜ30mL？">
   <div class="head"><div class="eyebrow">Q&amp;A 02</div><div class="q">なぜ最初の湯は 30mL なのか。</div></div>
   <div class="cards" style="flex:1;align-items:stretch">
@@ -921,7 +1009,7 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
   <div class="warn"><b>言い方の境界：</b>「30mLは科学的に導出された最適湯量」とは言わない。<b>原理は研究から、具体値は実飲から</b>決めた、と説明する。</div>
 </section>
 
-<!-- ============ 20 なぜ90℃・10秒 ============ -->
+<!-- ============ 21 なぜ90℃・10秒 ============ -->
 <section class="s qa" data-t="Q. なぜ二煎目は90℃・10秒？">
   <div class="head" style="margin-bottom:20px"><div class="eyebrow">Q&amp;A 03</div><div class="q" style="font-size:66px">なぜ二煎目は 90℃・10秒 なのか。</div></div>
   <div class="sidenote" style="font-size:36px;margin-bottom:16px">吸水済みの茶葉なら、<b>90℃・10秒</b>でもこれだけ追加で出る（同じ茶葉での連続抽出）</div>
@@ -950,7 +1038,7 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
   <div class="warn"><b>言い方の境界：</b>「90℃・10秒が拓朗（午）の科学的最適値」とは言わない。「出し切る」も言わない。既存研究の挙動と実飲目的に整合する<b>実践的な基準値</b>として採用した、と説明する。</div>
 </section>
 
-<!-- ============ 21 産地を淹れ分けているのか ============ -->
+<!-- ============ 22 産地を淹れ分けているのか ============ -->
 <section class="s qa" data-t="Q. 産地を淹れ分けている？">
   <div class="head"><div class="eyebrow">Q&amp;A 04</div><div class="q">川根本町と鹿児島を、淹れ分けているのか。</div></div>
   <div style="flex:1;display:flex;align-items:center;gap:40px">
@@ -968,7 +1056,7 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
   <div class="warn"><b>区別する三層：</b>① 文献で確認された事実　② 文献を土台にした今回の設計判断　③ 拓朗（午）での実飲・官能評価。<br>「瓜のような瑞々しい香り」も香気分析はしておらず、あくまで「私はそう感じている」という官能表現。</div>
 </section>
 
-<!-- ============ 22 出典 ============ -->
+<!-- ============ 23 出典 ============ -->
 <section class="s" data-t="出典">
   <div class="head"><div class="eyebrow">REFERENCES</div><h2>主要参考文献</h2></div>
   <ul class="refs" style="flex:1">
@@ -992,8 +1080,8 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
   <span class="pcOnly"><span class="k">F</span> で全画面 →　<span class="k">→</span> または <span class="k">Space</span> で次へ</span><span class="tapOnly">画面をタップ、または左へスワイプで次へ　右へスワイプで戻る</span><br>
   <div class="sub">
     <span class="pcOnly">このガイドは最初の1回だけ表示されます（何かキーを押すか、クリックで消えます）。<br>
-    7ページは <span class="k">→</span> を3回押して3段階で進みます。詳しくは「操作担当者用」の紙をご覧ください。</span><span class="tapOnly">このガイドは最初の1回だけ表示されます（画面をタップすると消えます）。<br>
-    7ページは3回タップして3段階で進みます。ピンチで拡大すると読みやすくなります。</span>
+    9ページは <span class="k">→</span> を3回押して3段階で進みます。詳しくは「操作担当者用」の紙をご覧ください。</span><span class="tapOnly">このガイドは最初の1回だけ表示されます（画面をタップすると消えます）。<br>
+    9ページは3回タップして3段階で進みます。ピンチで拡大すると読みやすくなります。</span>
   </div>
 </div></div>
 

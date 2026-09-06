@@ -109,8 +109,7 @@ h3{ font-size:66px; font-weight:800; line-height:1.25; }
 .step .d{ font-size:40px; color:var(--ink-2); margin-top:18px; line-height:1.45; }
 .arrow{ display:flex; align-items:center; font-size:96px; color:var(--gold); font-weight:300; }
 .steps.q4 .step{ padding:0 14px; }
-.steps.q4 .step .t{ font-size:58px; }
-.steps.q4 .step .d{ font-size:36px; }
+.steps.q4 .step .t{ font-size:64px; }
 .steps.q4 .arrow{ font-size:72px; }
 
 .cards{ display:flex; gap:34px; width:100%; }
@@ -343,20 +342,39 @@ h3{ font-size:66px; font-weight:800; line-height:1.25; }
 /* ---------- 06 今日のテーマ ---------- */
 .premise{ font-size:52px; font-weight:700; color:var(--ink-2); line-height:1.5; }
 
-/* ---------- 11 二つの表情（伝聞・官能・設計を層に分ける） ----------
-   産地と香味を左右で対応させるレイアウトにはしない。
-   「どちらの香味がどの産地に由来するか」という主張に読まれてしまうため。 */
-.layers{ width:100%; display:flex; flex-direction:column; gap:20px; }
-.layer{ display:flex; align-items:center; gap:30px; }
-.layer .lb{ flex:0 0 300px; text-align:right; padding-right:26px; border-right:6px solid var(--gold-soft);
-  font-size:34px; font-weight:800; color:var(--ink-2); line-height:1.35; letter-spacing:.04em; }
-.layer .bd{ flex:1; }
-.heard{ font-size:46px; font-weight:800; line-height:1.45; }
-.heard i{ font-style:normal; color:var(--gold); }
-.felt{ display:flex; gap:26px; }
-.felt div{ flex:1; border:5px solid var(--ink); background:#fff; padding:22px 24px;
-  font-size:42px; font-weight:800; line-height:1.35; text-align:center; }
-.because{ font-size:44px; font-weight:800; line-height:1.45; }
+/* ---------- 11 二つの表情 ----------
+   二つの官能表現が一つの碗に集まる図。産地は左右のどちらにも置かない。
+   左右に並べると「どちらの香味がどの産地に由来するか」という主張に
+   読まれてしまうため、産地は図の外に一行の地の文として置く。 */
+.tf{ display:block; width:100%; height:545px; }
+.tf text{ font-family:var(--sans); font-weight:800; fill:var(--ink); }
+.tf .cardL{ fill:#fff; stroke:var(--tea-green); stroke-width:5; }
+.tf .cardR{ fill:#fff; stroke:var(--warm); stroke-width:5; }
+.tf .ldot{ fill:none; stroke:var(--ink-3); stroke-width:6; stroke-dasharray:0 18; stroke-linecap:round; }
+.tf .ink{ fill:none; stroke:var(--ink); stroke-width:5; stroke-linecap:round; stroke-linejoin:round; }
+.tf .surf{ stroke:rgba(23,55,42,.28); stroke-width:3; }
+.tf .fx{ opacity:0; }
+.s.play .tf .fxA{ transition:opacity .5s .15s; opacity:1; }
+.s.play .tf .fxB{ transition:opacity .5s .70s; opacity:1; }
+.s.play .tf .fxC{ transition:opacity .5s 1.25s; opacity:1; }
+.tf .liq{ transform-box:fill-box; transform-origin:bottom; transform:scaleY(0); }
+.s.play .tf .liq{ transition:transform 1s 1.5s cubic-bezier(.25,.8,.3,1); transform:scaleY(1); }
+.tf .fxD{ opacity:0; }
+.s.play .tf .fxD{ transition:opacity .4s 2.3s; opacity:1; }
+.tfnote{ text-align:center; font-size:36px; font-weight:700; color:var(--ink-2); line-height:1.5; margin-top:8px; }
+.tfnote b{ color:var(--gold); font-weight:800; }
+
+/* ---------- 中央寄せと字送りの相殺 ----------
+   letter-spacing は最後の文字の右側にも入るため、中央寄せのとき
+   その半分だけ左にずれて見える。同量の text-indent で打ち消す。
+   （いずれも1行の要素にのみ適用している） */
+.center .eyebrow{ text-indent:.22em; }
+.kanbun{ text-indent:.16em; }
+.trio .gl .rd{ text-indent:.1em; }
+.step .n{ text-indent:.1em; }
+.card .k, .vcard .k, .vcard .fix{ text-indent:.06em; }
+.phase .tag{ text-indent:.1em; }
+.node .en{ text-indent:.1em; }
 
 /* ---------- 16 一人の飲み手として ---------- */
 .quo{ display:flex; gap:40px; }
@@ -448,7 +466,7 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
   <div style="position:absolute;left:46px;top:46px;right:46px;bottom:60px;border:3px double rgba(154,116,48,.5)"></div>
   <div class="eyebrow" style="margin-bottom:34px">NIHONCHA BREWERS CHAMPIONSHIP 2026</div>
   <h1 style="font-size:184px">一杯の設計図</h1>
-  <div style="font-size:52px;letter-spacing:.28em;color:var(--gold);margin-top:26px;font-weight:700">THE BLUEPRINT OF A CUP</div>
+  <div style="font-size:52px;letter-spacing:.28em;text-indent:.28em;color:var(--gold);margin-top:26px;font-weight:700">THE BLUEPRINT OF A CUP</div>
   <div style="width:280px;height:5px;background:var(--ink);margin:56px 0"></div>
   <div class="big" style="font-weight:700">しもきた茶苑大山　茶師十段之茶「拓朗（午）」</div>
   <div class="notes"><h4>0:00–0:20 ／ 発話</h4>「日本茶インストラクター協会北海道支部より参りました、根本拓と申します。」<br>ここは名乗りだけ。立場や思想は語らない。<br><b>次ページへのきっかけ：</b>「まず初めに、論語にこんな言葉があります。」</div>
@@ -491,28 +509,24 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
     <div class="step">
       <div class="n">01</div>
       <div class="t">荒茶を<br>仕入れる</div>
-      <div class="d">産地から届いた、<br>仕上げ前のお茶</div>
     </div>
     <div class="arrow">→</div>
     <div class="step">
       <div class="n">02</div>
       <div class="t">個性を<br>見極める</div>
-      <div class="d">その茶が何を<br>持っているか</div>
     </div>
     <div class="arrow">→</div>
     <div class="step">
       <div class="n gold">03</div>
-      <div class="t gold">火入れ・<br>合組</div>
-      <div class="d">火を入れ、<br>複数の茶を組み合わせる</div>
+      <div class="t gold">火入れと<br>合組</div>
     </div>
     <div class="arrow">→</div>
     <div class="step">
       <div class="n">04</div>
-      <div class="t">一つの商品<br>に仕上げる</div>
-      <div class="d">一つの完成した<br>お茶として世に出す</div>
+      <div class="t">一つの茶に<br>仕上げる</div>
     </div>
   </div>
-  <div class="big" style="text-align:center;margin-top:20px;line-height:1.45">お茶の産地ではない街に、<br><span class="mark">お茶を仕上げる技術</span>があった。</div>
+  <div class="big" style="text-align:center;margin-top:20px;line-height:1.45">産地ではない街に、<br><span class="mark">お茶を仕上げる技術</span>があった。</div>
   <div class="notes"><h4>1:20–1:50 ／ 発話</h4>2019年頃、まだ煎茶の違いもよくわかっていなかった。産地ではない東京の下北沢で「茶師」という言葉に出会い、何のことだろうと調べた——という順序で話す。<br>合組は<b>品質や価格の調整ではなく、個性を見極めて一つに仕上げる技術</b>として紹介する。<br><b>次ページへのきっかけ：</b>「伺ったところ、静岡県川根本町のお茶をベースに、鹿児島県産のお茶を組み合わせているそうです。」</div>
 </section>
 
@@ -521,22 +535,22 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
   <div class="head"><div class="eyebrow">THE DESIGN</div><h2>茶師が、一つにまとめた茶</h2></div>
   <div style="flex:1;display:flex;align-items:center;justify-content:center;gap:0">
     <div style="text-align:center;flex:1">
-      <div style="font-size:36px;font-weight:800;letter-spacing:.18em;color:var(--gold)">BASE</div>
-      <div style="font-size:72px;font-weight:800;margin-top:16px;line-height:1.25">静岡県<br>川根本町</div>
-      <div style="font-size:40px;color:var(--ink-2);margin-top:20px">これをベースに</div>
+      <div style="font-size:36px;font-weight:800;letter-spacing:.18em;text-indent:.18em;color:var(--gold)">BASE</div>
+      <div style="font-size:60px;font-weight:800;margin-top:18px">静岡県・川根本町</div>
+      <div style="font-size:40px;color:var(--ink-2);margin-top:20px">ベースにしている茶</div>
     </div>
     <div style="font-size:88px;color:var(--gold);font-weight:300;padding:0 26px;flex:none">→</div>
     <div style="width:340px;height:340px;border-radius:50%;background:var(--gold);color:var(--paper);
                 display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;
-                box-shadow:0 0 0 16px rgba(154,116,48,.16)">
+                text-align:center;box-shadow:0 0 0 16px rgba(154,116,48,.16)">
       <div style="font-size:64px;font-weight:800;line-height:1.2">拓朗<br>（午）</div>
-      <div style="font-size:30px;letter-spacing:.14em;margin-top:12px;opacity:.85">GOGUMI</div>
+      <div style="font-size:30px;letter-spacing:.14em;text-indent:.14em;margin-top:12px;opacity:.85">GOGUMI</div>
     </div>
     <div style="font-size:88px;color:var(--gold);font-weight:300;padding:0 26px;flex:none">←</div>
     <div style="text-align:center;flex:1">
-      <div style="font-size:36px;font-weight:800;letter-spacing:.18em;color:var(--gold)">BLEND</div>
-      <div style="font-size:72px;font-weight:800;margin-top:16px;line-height:1.25">鹿児島県産<br>のお茶</div>
-      <div style="font-size:40px;color:var(--ink-2);margin-top:20px">これを組み合わせて</div>
+      <div style="font-size:36px;font-weight:800;letter-spacing:.18em;text-indent:.18em;color:var(--gold)">BLEND</div>
+      <div style="font-size:60px;font-weight:800;margin-top:18px">鹿児島県産</div>
+      <div style="font-size:40px;color:var(--ink-2);margin-top:20px">組み合わせている茶</div>
     </div>
   </div>
   <div class="big" style="text-align:center;line-height:1.45">熱湯で淹れても、低温で淹れても、美味しい。<br><span class="mark">「これは、設計された飲み物だ。」</span></div>
@@ -548,7 +562,7 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
   <div class="eyebrow">TODAY'S THEME</div>
   <div class="premise">茶師が考え尽くした設計があるのなら、<br>奇をてらわず、普通に淹れるのが筋。</div>
   <div style="font-size:62px;font-weight:800;color:var(--gold);margin:26px 0 24px">それでも、あえて。</div>
-  <h2 style="font-size:80px;line-height:1.35">「二種類のお茶が<span class="mark">含まれていると分かる</span>」<br>一杯を作ってみる。</h2>
+  <h2 style="font-size:80px;line-height:1.35">二種類のお茶が<span class="mark">含まれていると分かる</span>、<br>そんな一杯を作ってみる。</h2>
   <div class="big" style="margin-top:44px;font-size:54px;line-height:1.45">淹れ手が狙いを持って、お茶を淹れる。<br>その<span class="mark">プロセス自体</span>も、一緒に楽しんでいただけたら。</div>
   <div class="notes"><h4>2:20–2:45 ／ 発話</h4>台本C節。<b>この発表の狙いを宣言するページ</b>。<br>「筋を通すなら普通に淹れる。それでも、あえて」という言い方で、茶師の設計への敬意を先に置いてから踏み出す。<br><b>言い方の境界：</b>「二種類が<b>含まれていると分かる</b>一杯」。<b>「産地を淹れ分ける」「分けて抽出する」とは言わない</b>（22ページのQ&A 04と同じ境界）。<br><b>次ページへのきっかけ：</b>「まず、淹れ手がコントロールできる変数は4つあります。」</div>
 </section>
@@ -827,26 +841,53 @@ html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
 <!-- ============ 11 一煎目の狙い（呈茶中） ============ -->
 <section class="s" data-t="一杯の中に、二つの表情">
   <div class="head" style="margin-bottom:26px"><div class="eyebrow">THE SENSORY</div><h2>一杯の中に、二つの表情</h2></div>
-  <div class="layers" style="flex:1;justify-content:center">
-    <div class="layer">
-      <div class="lb">茶師に伺った<br>合組の設計</div>
-      <div class="bd"><div class="heard">静岡県川根本町の<i>「山の香気」</i>をもつお茶をベースに、<br>鹿児島県産の<i>「穏やかな甘み」</i>のあるお茶を組み合わせている。</div></div>
-    </div>
-    <div class="layer">
-      <div class="lb">私が一杯から<br>感じ取ったもの</div>
-      <div class="bd"><div class="felt">
-        <div>若草のような爽やかな香りと、<br>煎茶らしいキレのある渋み</div>
-        <div>瓜のような<br>瑞々しい甘みと香り</div>
-      </div></div>
-    </div>
-    <div class="layer">
-      <div class="lb">だから、<br>この淹れ方に</div>
-      <div class="bd"><div class="because">これらが同居した一杯であることを強調するために、まず低温で浸出させ、<br><span class="mark">あとから高温の湯を当てて、渋味と香りを立ち上げた。</span></div></div>
-    </div>
-  </div>
-  <div class="src" style="text-align:center">※ 上段は茶師に伺った合組の設計、中段は私自身の官能表現です。どちらの香味がどの産地に由来するか、という対応づけではありません。</div>
+  <svg class="tf" viewBox="0 0 1520 520" role="img" aria-label="二つの官能表現が一つの碗に集まる図">
+    <defs>
+      <linearGradient id="tfTea" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#7FA05E"/>
+        <stop offset="100%" stop-color="#D9A03A"/>
+      </linearGradient>
+      <clipPath id="tfBowl"><path d="M30,112 C34,216 86,244 150,244 C214,244 266,216 270,112 Z"/></clipPath>
+    </defs>
+
+    <!-- 左：私が感じ取ったもの その1 -->
+    <g class="fx fxA">
+      <rect class="cardL" x="30" y="10" width="680" height="196" rx="12"/>
+      <text x="370" y="92" text-anchor="middle" font-size="46">若草のような爽やかな香り</text>
+      <text x="370" y="160" text-anchor="middle" font-size="46">煎茶らしいキレのある渋み</text>
+    </g>
+
+    <!-- 右：私が感じ取ったもの その2 -->
+    <g class="fx fxB">
+      <rect class="cardR" x="810" y="10" width="680" height="196" rx="12"/>
+      <text x="1150" y="92" text-anchor="middle" font-size="46">瓜のような</text>
+      <text x="1150" y="160" text-anchor="middle" font-size="46">瑞々しい甘みと香り</text>
+    </g>
+
+    <!-- 二つが一つの碗へ集まる -->
+    <g class="fx fxC">
+      <path class="ldot" d="M370,222 C370,300 470,326 592,334"/>
+      <path class="ldot" d="M1150,222 C1150,300 1050,326 928,334"/>
+    </g>
+
+    <!-- 一煎目の一杯 -->
+    <g transform="translate(580,186) scale(1.2)">
+      <g clip-path="url(#tfBowl)">
+        <rect class="liq" x="26" y="140" width="248" height="104" fill="url(#tfTea)"/>
+      </g>
+      <line class="surf fx fxD" x1="44" y1="140" x2="256" y2="140"/>
+      <path class="ink" d="M30,112 C34,216 86,244 150,244 C214,244 266,216 270,112"/>
+      <path class="ink" d="M24,112 L276,112"/>
+      <path class="ink" d="M122,241 L122,260 M178,241 L178,260"/>
+      <path class="ink" d="M114,260 L186,260"/>
+    </g>
+  </svg>
+
+  <div class="tfnote">茶師に伺った設計は、川根本町の<b>「山の香気」</b>に、鹿児島県産の<b>「穏やかな甘み」</b>を合わせたもの。</div>
+  <div class="src" style="text-align:center">※ 図の二つは私自身の官能表現です。どちらの香味がどの産地に由来するか、という対応づけではありません。</div>
   <div class="notes"><h4>5:45–6:30 ／ 味わう時間＋発話</h4>審査員が味わう時間を確保する。すぐ二煎目へ行かない。<br>
-  <b>このページの要点は、上段と中段を混ぜないこと。</b>上段（山の香気／穏やかな甘み）は<b>茶師に伺った設計</b>、中段（若草のような香り・キレのある渋み／瓜のような瑞々しい甘みと香り）は<b>私の官能表現</b>。左右で対応させて語らない。<br>
+  <b>スライドは図だけにしてあるので、言葉はここで補う。</b>台本どおり「これらが同居した一杯であることを強調するために、まず低温で浸出させてから、高温の湯を当てることで渋味と香りを立ち上げています」まで話す。<br>
+  <b>要点は、図の二つと下の一行を混ぜないこと。</b>図の二つ（若草のような香り・キレのある渋み／瓜のような瑞々しい甘みと香り）は<b>私の官能表現</b>、下の一行（山の香気／穏やかな甘み）は<b>茶師に伺った設計</b>。左右で対応させて語らない。<br>
   <b>言い方：</b>「私は瓜のような瑞々しい香りとして感じています」。特定の産地由来・特定の香気成分由来とは言わない。香気分析はしていない。<br>
   <b>8ページの碗の二層（山吹＋緑）が視覚的な伏線。</b>ただし二段抽出がこの二つの表情を生む、と断定はしない。<br><b>次ページへのきっかけ：</b>「二煎目ですが、高温の90℃のお湯を直接当てて、」</div>
 </section>
